@@ -1,12 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Check, Star, ArrowRight, Zap, Crown, Rocket, Infinity } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext.jsx';
-import { useAnimation } from '../contexts/AnimationContext.jsx';
+import { motion } from 'framer-motion';
 import { content } from '../data/content.js';
 
 const Packages = () => {
   const { language, isArabic } = useLanguage();
-  const { animateOnScroll } = useAnimation();
   const t = content[language];
   const packagesRef = useRef();
   const customRef = useRef();
@@ -20,13 +19,27 @@ const Packages = () => {
     3: Infinity,
   };
 
-  useEffect(() => {
-    animateOnScroll(packagesRef.current, {
-      from: { y: 50, opacity: 0 },
-      to: { y: 0, opacity: 1, duration: 1, stagger: 0.2 },
-    });
-    animateOnScroll(customRef.current);
-  }, [animateOnScroll]);
+  const containerVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 1,
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  const customSectionVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+  };
 
   const handleCardClick = (index) => {
     setSelectedPlan(index);
@@ -37,26 +50,44 @@ const Packages = () => {
     <div className="min-h-screen pt-20 bg-gray-50">
       {/* Title */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-12">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
+        >
           {t.packages.title}
-        </h1>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-xl text-gray-600 max-w-3xl mx-auto"
+        >
           {t.packages.subtitle}
-        </p>
+        </motion.p>
       </div>
 
       {/* Packages Grid */}
-      <section className="py-1">
+      <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div ref={packagesRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <motion.div
+            ref={packagesRef}
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          >
             {t.packages.plans.map((plan, index) => {
               const IconComponent = packageIcons[index];
               const isPopular = plan.popular;
               const isSelected = selectedPlan === index;
 
               return (
-                <div
+                <motion.div
                   key={index}
+                  variants={itemVariants}
                   className={`relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 ${
                     isPopular ? 'ring-2 ring-primary-500 scale-105' : ''
                   } ${isSelected && showDetails ? 'ring-2 ring-emerald-500' : ''}`}
@@ -107,10 +138,10 @@ const Packages = () => {
                       {isArabic ? 'اختر هذه الباقة' : 'Choose This Plan'}
                     </button>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -118,7 +149,12 @@ const Packages = () => {
       {showDetails && (
         <section className="pb-0 bg-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-gray-50 rounded-2xl p-8 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="bg-gray-50 rounded-2xl p-8 text-center"
+            >
               <h2 className="text-2xl font-bold text-gray-900 mb-4">
                 {t.packages.plans[selectedPlan].name} {isArabic ? 'تفاصيل الباقة' : 'Package Details'}
               </h2>
@@ -145,15 +181,22 @@ const Packages = () => {
               >
                 {isArabic ? 'إخفاء التفاصيل' : 'Hide Details'}
               </button>
-            </div>
+            </motion.div>
           </div>
         </section>
       )}
 
       {/* Custom Package Section */}
-      <section className="py-1 bg-white">
+      <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div ref={customRef} className="bg-gradient-to-r from-primary-50 to-emerald-50 rounded-3xl p-8 md:p-12 text-center">
+          <motion.div
+            ref={customRef}
+            variants={customSectionVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            className="bg-gradient-to-r from-primary-50 to-emerald-50 rounded-3xl p-8 md:p-12 text-center"
+          >
             <div className="w-20 h-20 bg-gradient-to-r from-primary-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6">
               <Rocket className="text-white" size={32} />
             </div>
@@ -169,22 +212,40 @@ const Packages = () => {
               {isArabic ? 'احصل على عرض مخصص' : 'Get Custom Quote'}
               <ArrowRight className={`ml-2 ${isArabic ? 'rotate-180 mr-2 ml-0' : ''}`} size={20} />
             </button>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Comparison Table */}
-      <section className="pb-11 bg-gray-50">
+      <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-5xl font-bold text-gray-900 mb-4">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="text-3xl font-bold text-gray-900 mb-4"
+            >
               {isArabic ? 'مقارنة الباقات' : 'Package Comparison'}
-            </h2>
-            <p className="text-gray-600">
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="text-gray-600"
+            >
               {isArabic ? 'مقارنة تفصيلية بين جميع الباقات' : 'Detailed comparison of all packages'}
-            </p>
+            </motion.p>
           </div>
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="bg-white rounded-2xl shadow-lg overflow-hidden"
+          >
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead className="bg-gray-50">
@@ -241,22 +302,40 @@ const Packages = () => {
                 </tbody>
               </table>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-primary-600 to-emerald-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-3xl md:text-4xl font-bold text-white mb-6"
+          >
             {isArabic ? 'جاهز لاختيار باقتك؟' : 'Ready to Choose Your Package?'}
-          </h2>
-          <p className="text-xl text-primary-100 mb-8">
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="text-xl text-primary-100 mb-8"
+          >
             {isArabic
               ? 'ابدأ رحلتك معنا اليوم واحصل على محتوى استثنائي'
               : 'Start your journey with us today and get exceptional content'}
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+          >
             <button
               className="inline-flex items-center px-8 py-4 bg-white text-primary-600 font-semibold rounded-full hover:bg-primary-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
             >
@@ -268,7 +347,7 @@ const Packages = () => {
             >
               {isArabic ? 'احجز استشارة مجانية' : 'Book Free Consultation'}
             </button>
-          </div>
+          </motion.div>
         </div>
       </section>
     </div>
