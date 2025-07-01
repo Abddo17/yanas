@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Filter, MapPin, Users, TrendingUp, ExternalLink } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext.jsx';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useAnimation } from '../contexts/AnimationContext.jsx';
 import { content } from '../data/content.js';
 import { influencers } from '../data/influencers.js';
@@ -12,10 +13,16 @@ const Influencers = () => {
   const t = content[language];
   const headerRef = useRef();
   const influencersRef = useRef();
-  
+  const containerRef = useRef();
+
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [filteredInfluencers, setFilteredInfluencers] = useState(influencers);
+
+  // Parallax effect for header
+  const { scrollY } = useScroll();
+  const headerY = useTransform(scrollY, [0, 300], [0, 50]);
+  const headerOpacity = useTransform(scrollY, [0, 300], [1, 0.6]);
 
   useEffect(() => {
     let filtered = influencers;
@@ -28,9 +35,9 @@ const Influencers = () => {
     // Filter by search term
     if (searchTerm) {
       filtered = filtered.filter(influencer =>
-        influencer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        influencer.handle.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        influencer.category.toLowerCase().includes(searchTerm.toLowerCase())
+          influencer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          influencer.handle.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          influencer.category.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
 
@@ -38,188 +45,255 @@ const Influencers = () => {
   }, [searchTerm, selectedCategory]);
 
   useEffect(() => {
-    animateOnScroll(headerRef.current);
+    animateOnScroll(headerRef.current, {
+      from: { y: 100, opacity: 0 },
+      to: { y: 0, opacity: 1, duration: 1.2, ease: 'easeOut' }
+    });
     animateOnScroll(influencersRef.current, {
       from: { y: 50, opacity: 0 },
-      to: { y: 0, opacity: 1, duration: 1, stagger: 0.1 },
+      to: { y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: 'easeOut' }
     });
   }, [animateOnScroll]);
 
   const getPlatformColor = (platform) => {
     switch (platform) {
-      case 'Instagram': return 'bg-pink-500';
-      case 'TikTok': return 'bg-black';
-      case 'YouTube': return 'bg-red-500';
-      case 'Twitter': return 'bg-blue-500';
-      default: return 'bg-gray-500';
+      case 'Instagram': return 'bg-gradient-to-br from-pink-500 to-purple-500';
+      case 'TikTok': return 'bg-gradient-to-br from-black to-gray-800';
+      case 'YouTube': return 'bg-gradient-to-br from-red-500 to-red-700';
+      case 'Twitter': return 'bg-gradient-to-br from-blue-500 to-cyan-500';
+      default: return 'bg-gradient-to-br from-gray-500 to-gray-700';
     }
   };
 
   return (
-    <div className="min-h-screen pt-20 bg-gray-50">
-      {/* Header */}
-      <section className="py-20 bg-gradient-to-r from-primary-600 to-emerald-600">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div ref={headerRef}>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+      <div ref={containerRef} className="min-h-screen bg-primary-50 overflow-hidden">
+        {/* Header Section */}
+        <motion.section
+            ref={headerRef}
+            style={{ y: headerY, opacity: headerOpacity }}
+            className="relative py-24 bg-gradient-to-br from-primary-600 to-emerald-600"
+        >
+          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-geometric.png')] opacity-10"></div>
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <motion.h1
+                initial={{ scale: 0.95 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 1, ease: 'easeOut' }}
+                className="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight"
+            >
               {t.influencers.title}
-            </h1>
-            <p className="text-xl text-primary-100 max-w-3xl mx-auto">
+            </motion.h1>
+            <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3, duration: 0.8 }}
+                className="text-xl md:text-2xl text-primary-100 max-w-3xl mx-auto font-light"
+            >
               {t.influencers.subtitle}
-            </p>
+            </motion.p>
           </div>
-        </div>
-      </section>
+        </motion.section>
 
-      {/* Search and Filter */}
-      <section className="py-8 bg-white border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
-            {/* Search Bar */}
-            <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-              <input
-                type="text"
-                placeholder={t.influencers.search}
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
-              />
-            </div>
+        {/* Search and Filter Section */}
+        <section className="py-12 bg-white/80 backdrop-blur-lg border-b border-primary-100">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.8, ease: 'easeOut' }}
+                className="flex flex-col lg:flex-row gap-8 items-center justify-between"
+            >
+              {/* Search Bar */}
+              <div className="relative flex-1 max-w-md">
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-primary-400" size={24} />
+                <input
+                    type="text"
+                    placeholder={t.influencers.search}
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="w-full pl-14 pr-6 py-4 bg-primary-50 border border-primary-200 rounded-full focus:ring-4 focus:ring-primary-300 focus:border-primary-500 transition-all duration-300 placeholder-primary-400 text-primary-900"
+                />
+              </div>
 
-            {/* Category Filter */}
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2">
-                <Filter size={20} className="text-gray-500" />
-                <span className="font-medium text-gray-700">
+              {/* Category Filter */}
+              <div className="flex items-center space-x-6">
+                <div className="flex items-center space-x-3">
+                  <Filter size={24} className="text-primary-500" />
+                  <span className="font-semibold text-primary-700 text-lg">
                   {isArabic ? 'الفئة:' : 'Category:'}
                 </span>
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  {t.influencers.categories.map((category) => (
+                      <motion.button
+                          key={category}
+                          onClick={() => setSelectedCategory(category === 'الكل' ? 'All' : category)}
+                          whileHover={{ scale: 1.05, boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)' }}
+                          whileTap={{ scale: 0.95 }}
+                          className={`px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 ${
+                              selectedCategory === (category === 'الكل' ? 'All' : category)
+                                  ? 'bg-primary-500 text-white shadow-xl'
+                                  : 'bg-primary-100 text-primary-700 hover:bg-primary-200'
+                          }`}
+                      >
+                        {category}
+                      </motion.button>
+                  ))}
+                </div>
               </div>
-              <div className="flex flex-wrap gap-2">
-                {t.influencers.categories.map((category) => (
-                  <button
-                    key={category}
-                    onClick={() => setSelectedCategory(category === 'الكل' ? 'All' : category)}
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                      selectedCategory === (category === 'الكل' ? 'All' : category)
-                        ? 'bg-primary-500 text-white shadow-lg'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                    }`}
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Results Count */}
+        <section className="py-6 bg-primary-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                className="text-primary-600 font-medium"
+            >
+              {isArabic
+                  ? `عرض ${filteredInfluencers.length} من ${influencers.length} مؤثر`
+                  : `Showing ${filteredInfluencers.length} of ${influencers.length} influencers`
+              }
+            </motion.p>
+          </div>
+        </section>
+
+        {/* Influencers Grid */}
+        <section className="py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+                ref={influencersRef}
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: {
+                      staggerChildren: 0.15
+                    }
+                  }
+                }}
+            >
+              {filteredInfluencers.map((influencer) => (
+                  <motion.div
+                      key={influencer.id}
+                      variants={{
+                        hidden: { y: 50, opacity: 0 },
+                        visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: 'easeOut' } }
+                      }}
                   >
-                    {category}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Results Count */}
-      <section className="py-4 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-gray-600">
-            {isArabic 
-              ? `عرض ${filteredInfluencers.length} من ${influencers.length} مؤثر`
-              : `Showing ${filteredInfluencers.length} of ${influencers.length} influencers`
-            }
-          </p>
-        </div>
-      </section>
-
-      {/* Influencers Grid */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div ref={influencersRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredInfluencers.map((influencer) => (
-              <Link
-                key={influencer.id}
-                to={`/influencer/${influencer.id}`}
-                className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
-              >
-                <div className="relative">
-                  <img
-                    src={influencer.image}
-                    alt={influencer.name}
-                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <div className="flex items-center justify-between">
-                      <div className={`px-3 py-1 rounded-full text-xs font-medium text-white ${getPlatformColor(influencer.platform)}`}>
-                        {influencer.platform}
+                    <Link
+                        to={`/influencer/${influencer.id}`}
+                        className="group bg-white rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-3"
+                    >
+                      <div className="relative overflow-hidden">
+                        <motion.img
+                            src={influencer.image}
+                            alt={influencer.name}
+                            className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                            whileHover={{ scale: 1.1 }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                        <div className="absolute bottom-6 left-6 right-6">
+                          <div className="flex items-center justify-between">
+                            <motion.div
+                                className={`px-4 py-2 rounded-full text-sm font-semibold text-white ${getPlatformColor(influencer.platform)}`}
+                                whileHover={{ scale: 1.1 }}
+                            >
+                              {influencer.platform}
+                            </motion.div>
+                            <motion.div
+                                className="bg-white/20 backdrop-blur-lg px-4 py-2 rounded-full text-sm font-semibold text-white"
+                                whileHover={{ scale: 1.1 }}
+                            >
+                              {influencer.category}
+                            </motion.div>
+                          </div>
+                        </div>
                       </div>
-                      <div className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium text-white">
-                        {influencer.category}
+
+                      <div className="p-8">
+                        <div className="flex items-center justify-between mb-6">
+                          <div>
+                            <motion.h3
+                                className="text-2xl font-bold text-black group-hover:text-primary-600 transition-colors duration-300"
+                                whileHover={{ x: 5 }}
+                            >
+                              {influencer.name}
+                            </motion.h3>
+                            <p className="text-primary-500 text-sm font-medium">{influencer.handle}</p>
+                          </div>
+                          <div className="text-right">
+                            <div className="text-xl font-bold text-primary-900">{influencer.followers}</div>
+                            <div className="text-sm text-primary-500">{isArabic ? 'متابع' : 'followers'}</div>
+                          </div>
+                        </div>
+
+                        <p className="text-primary-black text-sm mb-6 line-clamp-3 leading-relaxed">
+                          {influencer.bio}
+                        </p>
+
+                        <div className="flex items-center justify-between text-sm">
+                          <div className="flex items-center space-x-4">
+                            <div className="flex items-center text-primary-600">
+                              <MapPin size={16} className="mr-2" />
+                              <span>{influencer.location}</span>
+                            </div>
+                          </div>
+                          <div className="flex items-center space-x-4">
+                            <div className="flex items-center text-emerald-600">
+                              <TrendingUp size={16} className="mr-2" />
+                              <span>{influencer.engagement}</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <motion.div
+                            className="mt-6 pt-6 border-t border-primary-100"
+                            whileHover={{ x: 5 }}
+                        >
+                          <div className="flex items-center justify-between">
+                        <span className="text-sm font-semibold text-primary-600">
+                          {isArabic ? 'عرض الملف الشخصي' : 'View Profile'}
+                        </span>
+                            <ExternalLink size={18} className="text-primary-500 group-hover:translate-x-2 transition-transform duration-300" />
+                          </div>
+                        </motion.div>
                       </div>
-                    </div>
-                  </div>
-                </div>
+                    </Link>
+                  </motion.div>
+              ))}
+            </motion.div>
 
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <div>
-                      <h3 className="text-xl font-bold text-gray-900 group-hover:text-primary-600 transition-colors duration-200">
-                        {influencer.name}
-                      </h3>
-                      <p className="text-gray-600 text-sm">{influencer.handle}</p>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-lg font-bold text-gray-900">{influencer.followers}</div>
-                      <div className="text-xs text-gray-500">{isArabic ? 'متابع' : 'followers'}</div>
-                    </div>
-                  </div>
-
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                    {influencer.bio}
+            {/* No Results */}
+            {filteredInfluencers.length === 0 && (
+                <motion.div
+                    className="text-center py-20"
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                >
+                  <Users size={80} className="mx-auto text-primary-200 mb-6" />
+                  <h3 className="text-2xl font-semibold text-primary-700 mb-3">
+                    {isArabic ? 'لم يتم العثور على مؤثرين' : 'No influencers found'}
+                  </h3>
+                  <p className="text-primary-500 text-lg">
+                    {isArabic
+                        ? 'جرب تغيير معايير البحث أو الفلترة'
+                        : 'Try adjusting your search or filter criteria'
+                    }
                   </p>
-
-                  <div className="flex items-center justify-between text-sm">
-                    <div className="flex items-center space-x-4">
-                      <div className="flex items-center text-gray-600">
-                        <MapPin size={14} className="mr-1" />
-                        <span>{influencer.location}</span>
-                      </div>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="flex items-center text-green-600">
-                        <TrendingUp size={14} className="mr-1" />
-                        <span>{influencer.engagement}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-4 pt-4 border-t border-gray-100">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">
-                        {isArabic ? 'عرض الملف الشخصي' : 'View Profile'}
-                      </span>
-                      <ExternalLink size={16} className="text-primary-500 group-hover:translate-x-1 transition-transform duration-200" />
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            ))}
+                </motion.div>
+            )}
           </div>
-
-          {/* No Results */}
-          {filteredInfluencers.length === 0 && (
-            <div className="text-center py-16">
-              <Users size={64} className="mx-auto text-gray-300 mb-4" />
-              <h3 className="text-xl font-semibold text-gray-600 mb-2">
-                {isArabic ? 'لم يتم العثور على مؤثرين' : 'No influencers found'}
-              </h3>
-              <p className="text-gray-500">
-                {isArabic 
-                  ? 'جرب تغيير معايير البحث أو الفلترة'
-                  : 'Try adjusting your search or filter criteria'
-                }
-              </p>
-            </div>
-          )}
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
   );
 };
 
