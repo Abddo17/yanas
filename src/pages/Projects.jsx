@@ -9,6 +9,8 @@ const Projects = () => {
   const { animateOnScroll } = useAnimation();
   const t = content[language];
   const headerRef = useRef();
+  const filterLabelRef = useRef();
+   const filterButtonsRef = useRef([]);
   const projectsRef = useRef();
   const [selectedCategory, setSelectedCategory] = useState('All');
 
@@ -91,41 +93,42 @@ const Projects = () => {
   }, [animateOnScroll]);
 
   return (
-    <div className="min-h-screen pt-20 bg-gray-50">
+    <div className="min-h-screen pt-20 bg-white">
       {/* Header */}
-      <section className="py-20 bg-gradient-to-r from-primary-600 to-emerald-600">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div ref={headerRef}>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              {t.projects.title}
-            </h1>
-            <p className="text-xl text-primary-100 max-w-3xl mx-auto">
-              {t.projects.subtitle}
-            </p>
-          </div>
+       <section className="py-20 bg-gradient-to-r from-primary-600 to-emerald-600 relative z-10">
+        <div  className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ${isArabic ? 'text-right' : 'text-center'}`}>
+          <h1 className={`text-4xl md:text-5xl font-bold text-white mb-4 ${isArabic ? 'font-arabic' : 'font-sans'}`}>
+            {isArabic ? 'مشاريعنا' : 'Our Projects'}
+          </h1>
+          <p className={`text-lg md:text-xl text-white/95 max-w-3xl mx-auto ${isArabic ? 'font-arabic' : 'font-sans'} font-[Arial, sans-serif] leading-relaxed drop-shadow-sm`}>
+            {isArabic
+              ? 'استكشف مجموعتنا المتنوعة من المشاريع عبر منصات التواصل الاجتماعي، والتي تعرض الإبداع والتفاعل في مختلف المجالات.'
+              : 'Explore our diverse portfolio of projects across social media platforms, showcasing creativity and engagement across various industries.'}
+          </p>
         </div>
       </section>
 
       {/* Filter Section */}
-      <section className="py-8 bg-white border-b">
+       <section className="py-8 bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between flex-wrap gap-4">
-            <div className="flex items-center space-x-2">
-              <Filter size={20} className="text-gray-500" />
-              <span className="font-medium text-gray-700">
+          <div className={`flex items-center justify-between flex-wrap gap-6 ${isArabic ? 'flex-row-reverse' : ''}`}>
+            <div ref={filterLabelRef} className={`flex items-center ${isArabic ? 'space-x-reverse space-x-4' : 'space-x-4'}`}>
+              <Filter size={28} className="text-gray-700" />
+              <span className={`text-xl font-bold text-gray-900 ${isArabic ? 'font-arabic' : 'font-sans'} font-[Arial, sans-serif] tracking-tight`}>
                 {isArabic ? 'تصفية حسب:' : 'Filter by:'}
               </span>
             </div>
-            <div className="flex flex-wrap gap-2">
-              {categories.map((category) => (
+            <div className={`flex flex-wrap gap-3 ${isArabic ? 'justify-end' : 'justify-start'}`}>
+              {categories.map((category, index) => (
                 <button
                   key={category}
+                  ref={(el) => (filterButtonsRef.current[index] = el)}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                  className={`px-6 py-3 rounded-full text-base font-semibold transition-all duration-300 ${
                     selectedCategory === category
-                      ? 'bg-primary-500 text-white shadow-lg'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
+                      ? 'bg-primary-500 text-white shadow-lg hover:shadow-xl'
+                      : 'bg-gray-100 text-gray-900 hover:bg-gray-200 hover:shadow-md border border-gray-200'
+                  } focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 ${isArabic ? 'font-arabic' : 'font-sans'} font-[Arial, sans-serif]`}
                 >
                   {isArabic && category === 'All' ? 'الكل' : category}
                 </button>
@@ -193,12 +196,12 @@ const Projects = () => {
           </div>
 
           {/* Load More Button */}
-          <div className="text-center mt-12">
+          {/* <div className="text-center mt-12">
             <button className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-500 to-emerald-600 text-white font-semibold rounded-full hover:from-primary-600 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
               {t.projects.cta}
               <ExternalLink className={`ml-2 ${isArabic ? 'rotate-180 mr-2 ml-0' : ''}`} size={20} />
             </button>
-          </div>
+          </div> */}
         </div>
       </section>
     </div>
