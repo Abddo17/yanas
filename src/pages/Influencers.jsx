@@ -95,7 +95,7 @@ const Influencers = () => {
         </motion.section>
 
         {/* Search and Filter Section */}
-        <section className="py-12 bg-white/80 backdrop-blur-lg border-b border-primary-100">
+        <section className="py-12 bg-primary-50  border-b border-primary-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
                 initial={{ y: 20, opacity: 0 }}
@@ -105,13 +105,13 @@ const Influencers = () => {
             >
               {/* Search Bar */}
               <div className="relative flex-1 max-w-md">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-primary-400" size={24} />
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500" size={24} />
                 <input
                     type="text"
                     placeholder={t.influencers.search}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-14 pr-6 py-4 bg-primary-50 border border-primary-200 rounded-full focus:ring-4 focus:ring-primary-300 focus:border-primary-500 transition-all duration-300 placeholder-primary-400 text-primary-900"
+                    className="w-full pl-14 pr-6 py-4 bg-primary-50 border border-primary-500 rounded-lg   transition-all duration-300  text-primary-900"
                 />
               </div>
 
@@ -183,6 +183,7 @@ const Influencers = () => {
               {filteredInfluencers.map((influencer) => (
                   <motion.div
                       key={influencer.id}
+                      className="border-2  shadow-lg hover:border-primary-100"
                       variants={{
                         hidden: { y: 50, opacity: 0 },
                         visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: 'easeOut' } }
@@ -235,7 +236,7 @@ const Influencers = () => {
                           </div>
                         </div>
 
-                        <p className="text-primary-black text-sm mb-6 line-clamp-3 leading-relaxed">
+                        <p className="text-primary-black h-20 text-lg mb-6 line-clamp-3 leading-relaxed">
                           {influencer.bio}
                         </p>
 
@@ -255,14 +256,14 @@ const Influencers = () => {
                         </div>
 
                         <motion.div
-                            className="mt-6 pt-6 border-t border-primary-100"
+                            className="mt-6 pt-2 border-primary-100 "
                             whileHover={{ x: 5 }}
                         >
-                          <div className="flex items-center justify-between">
-                        <span className="text-sm font-semibold text-primary-600">
+                          <div className=" text-center rounded-xl py-2 px-4 bg-gradient-to-r from-primary-500 to-emerald-600 text-white hover:from-primary-600 hover:to-emerald-700 transform hover:scale-105">
+                        <span className="text-lg text-center text-white">
                           {isArabic ? 'عرض الملف الشخصي' : 'View Profile'}
                         </span>
-                            <ExternalLink size={18} className="text-primary-500 group-hover:translate-x-2 transition-transform duration-300" />
+
                           </div>
                         </motion.div>
                       </div>

@@ -1,12 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Check, Star, ArrowRight, Zap, Crown, Rocket, Infinity } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext.jsx';
-import { useAnimation } from '../contexts/AnimationContext.jsx';
+import { motion } from 'framer-motion';
 import { content } from '../data/content.js';
 
 const Packages = () => {
   const { language, isArabic } = useLanguage();
-  const { animateOnScroll } = useAnimation();
   const t = content[language];
   const packagesRef = useRef();
   const customRef = useRef();
@@ -20,13 +19,27 @@ const Packages = () => {
     3: Infinity,
   };
 
-  useEffect(() => {
-    animateOnScroll(packagesRef.current, {
-      from: { y: 50, opacity: 0 },
-      to: { y: 0, opacity: 1, duration: 1, stagger: 0.2 },
-    });
-    animateOnScroll(customRef.current);
-  }, [animateOnScroll]);
+  const containerVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 1,
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  const customSectionVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+  };
 
   const handleCardClick = (index) => {
     setSelectedPlan(index);
@@ -34,186 +47,277 @@ const Packages = () => {
   };
 
   return (
-    <div className="min-h-screen pt-20 bg-gray-50">
-      {/* Title */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-12">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-          {t.packages.title}
-        </h1>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          {t.packages.subtitle}
-        </p>
-      </div>
-
-      {/* Packages Grid */}
-      <section className="py-1">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div ref={packagesRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {t.packages.plans.map((plan, index) => {
-              const IconComponent = packageIcons[index];
-              const isPopular = plan.popular;
-              const isSelected = selectedPlan === index;
-
-              return (
-                <div
-                  key={index}
-                  className={`relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 ${
-                    isPopular ? 'ring-2 ring-primary-500 scale-105' : ''
-                  } ${isSelected && showDetails ? 'ring-2 ring-emerald-500' : ''}`}
-                  onClick={() => handleCardClick(index)}
-                >
-                  {isPopular && (
-                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                      <div className="bg-gradient-to-r from-primary-500 to-emerald-600 text-white px-4 py-2 rounded-full text-sm font-medium">
-                        {isArabic ? 'الأكثر شعبية' : 'Most Popular'}
-                      </div>
-                    </div>
-                  )}
-                  <div className="p-8">
-                    <div className="text-center mb-8">
-                      <div
-                        className={`w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center ${
-                          isPopular
-                            ? 'bg-gradient-to-r from-primary-500 to-emerald-600'
-                            : 'bg-gray-100'
-                        }`}
-                      >
-                        <IconComponent
-                          className={isPopular ? 'text-white' : 'text-gray-600'}
-                          size={28}
-                        />
-                      </div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">{plan.name}</h3>
-                      <div className="mb-4">
-                        <span className="text-3xl font-bold text-gray-900">{plan.price}</span>
-                        <span className="text-gray-600 ml-2">/ {plan.period}</span>
-                      </div>
-                    </div>
-                    <ul className="space-y-4 mb-8">
-                      {plan.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-start">
-                          <Check className="text-green-500 mr-3 mt-0.5 flex-shrink-0" size={18} />
-                          <span className="text-gray-700">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <button
-                      className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 ${
-                        isPopular
-                          ? 'bg-gradient-to-r from-primary-500 to-emerald-600 text-white hover:from-primary-600 hover:to-emerald-700 transform hover:scale-105'
-                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                      }`}
-                    >
-                      {isArabic ? 'اختر هذه الباقة' : 'Choose This Plan'}
-                    </button>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+      <div className="min-h-screen pt-20 bg-gray-50">
+        {/* Title */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-12">
+          <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
+          >
+            {t.packages.title}
+          </motion.h1>
+          <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-xl text-gray-600 max-w-3xl mx-auto"
+          >
+            {t.packages.subtitle}
+          </motion.p>
         </div>
-      </section>
 
-      {/* Selected Package Details */}
-      {showDetails && (
-        <section className="pb-0 bg-white">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-gray-50 rounded-2xl p-8 text-center">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                {t.packages.plans[selectedPlan].name} {isArabic ? 'تفاصيل الباقة' : 'Package Details'}
-              </h2>
-              <p className="text-lg text-gray-600 mb-6">
-                {t.packages.plans[selectedPlan].description}
-              </p>
-              <ul className="space-y-4 mb-8">
-                {t.packages.plans[selectedPlan].features.map((feature, featureIndex) => (
-                  <li key={featureIndex} className="flex items-start justify-center">
-                    <Check className="text-green-500 mr-3 mt-0.5 flex-shrink-0" size={18} />
-                    <span className="text-gray-700">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="text-center">
+        {/* Packages Grid */}
+        <section className="py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+                ref={packagesRef}
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            >
+              {t.packages.plans.map((plan, index) => {
+                const IconComponent = packageIcons[index];
+                const isPopular = plan.popular;
+                const isSelected = selectedPlan === index;
+
+                return (
+                    <motion.div
+                        key={index}
+                        variants={itemVariants}
+                        className={`relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 ${
+                            isPopular ? 'ring-2 ring-primary-500 scale-105' : ''
+                        } ${isSelected && showDetails ? 'ring-2 ring-emerald-500' : ''}`}
+                        onClick={() => handleCardClick(index)}
+                    >
+                      {isPopular && (
+                          <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                            <div className="bg-gradient-to-r from-primary-500 to-emerald-600 text-white px-4 py-2 rounded-full text-sm font-medium">
+                              {isArabic ? 'الأكثر شعبية' : 'Most Popular'}
+                            </div>
+                          </div>
+                      )}
+                      <div className="p-8">
+                        <div className="text-center mb-8">
+                          <div
+                              className={`w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center ${
+                                  isPopular
+                                      ? 'bg-gradient-to-r from-primary-500 to-emerald-600'
+                                      : 'bg-gray-100'
+                              }`}
+                          >
+                            <IconComponent
+                                className={isPopular ? 'text-white' : 'text-gray-600'}
+                                size={28}
+                            />
+                          </div>
+                          <h3 className="text-xl font-bold text-gray-900 mb-2">{plan.name}</h3>
+                          <div className="mb-4">
+                            <span className="text-3xl font-bold text-gray-900">{plan.price}</span>
+                            <span className="text-gray-600 ml-2">/ {plan.period}</span>
+                          </div>
+                        </div>
+                        <ul className="space-y-4 mb-8">
+                          {plan.features.map((feature, featureIndex) => (
+                              <li key={featureIndex} className="flex items-start">
+                                <Check className="text-green-500 mr-3 mt-0.5 flex-shrink-0" size={18} />
+                                <span className="text-gray-700">{feature}</span>
+                              </li>
+                          ))}
+                        </ul>
+                        <button
+                            className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 ${
+                                isPopular
+                                    ? 'bg-gradient-to-r from-primary-500 to-emerald-600 text-white hover:from-primary-600 hover:to-emerald-700 transform hover:scale-105'
+                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                            }`}
+                        >
+                          {isArabic ? 'اختر هذه الباقة' : 'Choose This Plan'}
+                        </button>
+                      </div>
+                    </motion.div>
+                );
+              })}
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Selected Package Details */}
+        {showDetails && (
+            <section className="pb-0 bg-white">
+              <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className="bg-gray-50 rounded-2xl p-8"
+                >
+                  <h2 className="text-2xl font-bold text-gray-900 mb-4 text-center">
+                    {t.packages.plans[selectedPlan].name} {isArabic ? 'تفاصيل الباقة' : 'Package Details'}
+                  </h2>
+                  <p className="text-lg text-gray-600 mb-6 text-center">
+                    {t.packages.plans[selectedPlan].description}
+                  </p>
+                  <div className="space-y-6">
+                    {/* Features */}
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                        {isArabic ? 'الميزات المدرجة' : 'Included Features'}
+                      </h3>
+                      <ul className="space-y-4">
+                        {t.packages.plans[selectedPlan].features.map((feature, featureIndex) => (
+                            <li key={featureIndex} className="flex items-start justify-center">
+                              <Check className="text-green-500 mr-3 mt-0.5 flex-shrink-0" size={18} />
+                              <span className="text-gray-700">{feature}</span>
+                            </li>
+                        ))}
+                      </ul>
+                    </div>
+                    {/* Benefits */}
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                        {isArabic ? 'الفوائد' : 'Benefits'}
+                      </h3>
+                      <p className="text-gray-600">
+                        {t.packages.plans[selectedPlan].benefits || (isArabic ? 'تم تصميم هذه الباقة لتقديم أفضل قيمة لاحتياجاتك.' : 'This package is designed to deliver the best value for your needs.')}
+                      </p>
+                    </div>
+                    {/* Support Level */}
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                        {isArabic ? 'مستوى الدعم' : 'Support Level'}
+                      </h3>
+                      <p className="text-gray-600">
+                        {t.packages.plans[selectedPlan].supportLevel || (isArabic ? 'دعم أساسي عبر البريد الإلكتروني.' : 'Basic email support.')}
+                      </p>
+                    </div>
+                    {/* Delivery Timeline */}
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                        {isArabic ? 'الجدول الزمني للتسليم' : 'Delivery Timeline'}
+                      </h3>
+                      <p className="text-gray-600">
+                        {t.packages.plans[selectedPlan].deliveryTimeline || (isArabic ? 'التسليم في غضون 5-7 أيام عمل.' : 'Delivery within 5-7 business days.')}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="text-center mt-6">
                 <span className="text-3xl font-bold text-gray-900">
                   {t.packages.plans[selectedPlan].price}
                 </span>
-                <span className="text-gray-600 ml-2">/ {t.packages.plans[selectedPlan].period}</span>
+                    <span className="text-gray-600 ml-2">/ {t.packages.plans[selectedPlan].period}</span>
+                  </div>
+                  <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
+                    <button
+                        className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-500 to-emerald-600 text-white font-semibold rounded-full hover:from-primary-600 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                    >
+                      {isArabic ? 'ابدأ الآن' : 'Get Started Now'}
+                      <ArrowRight className={`ml-2 ${isArabic ? 'rotate-180 mr-2 ml-0' : ''}`} size={20} />
+                    </button>
+                    <button
+                        className="inline-flex items-center px-8 py-4 text-primary-600 border-2 border-primary-500 rounded-full hover:bg-primary-50 transition-all duration-300"
+                        onClick={() => setShowDetails(false)}
+                    >
+                      {isArabic ? 'إخفاء التفاصيل' : 'Hide Details'}
+                    </button>
+                  </div>
+                </motion.div>
               </div>
+            </section>
+        )}
+
+        {/* Custom Package Section */}
+        <section className="py-16 bg-white">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+                ref={customRef}
+                variants={customSectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, invitation: 0.2 }}
+                className="bg-gradient-to-r from-primary-50 to-emerald-50 rounded-3xl p-8 md:p-12 text-center"
+            >
+              <div className="w-20 h-20 bg-gradient-to-r from-primary-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Rocket className="text-white" size={32} />
+              </div>
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                {t.packages.custom.title}
+              </h2>
+              <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+                {t.packages.custom.description}
+              </p>
               <button
-                className="mt-6 inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-500 to-emerald-600 text-white font-semibold rounded-full hover:from-primary-600 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
-                onClick={() => setShowDetails(false)}
+                  className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-500 to-emerald-600 text-white font-semibold rounded-full hover:from-primary-600 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
-                {isArabic ? 'إخفاء التفاصيل' : 'Hide Details'}
+                {isArabic ? 'احصل على عرض مخصص' : 'Get Custom Quote'}
+                <ArrowRight className={`ml-2 ${isArabic ? 'rotate-180 mr-2 ml-0' : ''}`} size={20} />
               </button>
-            </div>
+            </motion.div>
           </div>
         </section>
-      )}
 
-      {/* Custom Package Section */}
-      <section className="py-1 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div ref={customRef} className="bg-gradient-to-r from-primary-50 to-emerald-50 rounded-3xl p-8 md:p-12 text-center">
-            <div className="w-20 h-20 bg-gradient-to-r from-primary-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Rocket className="text-white" size={32} />
+        {/* Comparison Table */}
+        <section className="py-16 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <motion.h2
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  viewport={{ once: true }}
+                  className="text-3xl font-bold text-gray-900 mb-4"
+              >
+                {isArabic ? 'مقارنة الباقات' : 'Package Comparison'}
+              </motion.h2>
+              <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  viewport={{ once: true }}
+                  className="text-gray-600"
+              >
+                {isArabic ? 'مقارنة تفصيلية بين جميع الباقات' : 'Detailed comparison of all packages'}
+              </motion.p>
             </div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              {t.packages.custom.title}
-            </h2>
-            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-              {t.packages.custom.description}
-            </p>
-            <button
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-500 to-emerald-600 text-white font-semibold rounded-full hover:from-primary-600 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-2xl shadow-lg overflow-hidden"
             >
-              {isArabic ? 'احصل على عرض مخصص' : 'Get Custom Quote'}
-              <ArrowRight className={`ml-2 ${isArabic ? 'rotate-180 mr-2 ml-0' : ''}`} size={20} />
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Comparison Table */}
-      <section className="pb-11 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-5xl font-bold text-gray-900 mb-4">
-              {isArabic ? 'مقارنة الباقات' : 'Package Comparison'}
-            </h2>
-            <p className="text-gray-600">
-              {isArabic ? 'مقارنة تفصيلية بين جميع الباقات' : 'Detailed comparison of all packages'}
-            </p>
-          </div>
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead className="bg-gray-50">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-gray-50">
                   <tr>
                     <th className="px-6 py-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">
                       {isArabic ? 'الميزة' : 'Feature'}
                     </th>
                     {t.packages.plans.map((plan, index) => (
-                      <th
-                        key={index}
-                        className="px-6 py-4 text-center text-sm font-medium text-gray-500 uppercase tracking-wider"
-                      >
-                        {plan.name}
-                      </th>
+                        <th
+                            key={index}
+                            className="px-6 py-4 text-center text-sm font-medium text-gray-500 uppercase tracking-wider"
+                        >
+                          {plan.name}
+                        </th>
                     ))}
                   </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
                   <tr>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                       {isArabic ? 'السعر الشهري' : 'Monthly Price'}
                     </td>
                     {t.packages.plans.map((plan, index) => (
-                      <td
-                        key={index}
-                        className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-900 font-semibold"
-                      >
-                        {plan.price}
-                      </td>
+                        <td
+                            key={index}
+                            className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-900 font-semibold"
+                        >
+                          {plan.price}
+                        </td>
                     ))}
                   </tr>
                   <tr className="bg-gray-50">
@@ -238,40 +342,58 @@ const Packages = () => {
                       <Infinity className="mx-auto text-primary-500" size={20} />
                     </td>
                   </tr>
-                </tbody>
-              </table>
-            </div>
+                  </tbody>
+                </table>
+              </div>
+            </motion.div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary-600 to-emerald-600">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            {isArabic ? 'جاهز لاختيار باقتك؟' : 'Ready to Choose Your Package?'}
-          </h2>
-          <p className="text-xl text-primary-100 mb-8">
-            {isArabic
-              ? 'ابدأ رحلتك معنا اليوم واحصل على محتوى استثنائي'
-              : 'Start your journey with us today and get exceptional content'}
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              className="inline-flex items-center px-8 py-4 bg-white text-primary-600 font-semibold rounded-full hover:bg-primary-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
+        {/* CTA Section */}
+        <section className="py-20 bg-gradient-to-r from-primary-600 to-emerald-600">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                className="text-3xl md:text-4xl font-bold text-white mb-6"
             >
-              {isArabic ? 'تواصل معنا' : 'Contact Us'}
-              <ArrowRight className={`ml-2 ${isArabic ? 'rotate-180 mr-2 ml-0' : ''}`} size={20} />
-            </button>
-            <button
-              className="inline-flex items-center px-8 py-4 text-white border-2 border-white/30 rounded-full hover:bg-white/10 transition-all duration-300"
+              {isArabic ? 'جاهز لاختيار باقتك؟' : 'Ready to Choose Your Package?'}
+            </motion.h2>
+            <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="text-xl text-primary-100 mb-8"
             >
-              {isArabic ? 'احجز استشارة مجانية' : 'Book Free Consultation'}
-            </button>
+              {isArabic
+                  ? 'ابدأ رحلتك معنا اليوم واحصل على محتوى استثنائي'
+                  : 'Start your journey with us today and get exceptional content'}
+            </motion.p>
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                viewport={{ once: true }}
+                className="flex flex-col sm:flex-row gap-4 justify-center"
+            >
+              <button
+                  className="inline-flex items-center px-8 py-4 bg-white text-primary-600 font-semibold rounded-full hover:bg-primary-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
+              >
+                {isArabic ? 'تواصل معنا' : 'Contact Us'}
+                <ArrowRight className={`ml-2 ${isArabic ? 'rotate-180 mr-2 ml-0' : ''}`} size={20} />
+              </button>
+              <button
+                  className="inline-flex items-center px-8 py-4 text-white border-2 border-white/30 rounded-full hover:bg-white/10 transition-all duration-300"
+              >
+                {isArabic ? 'احجز استشارة مجانية' : 'Book Free Consultation'}
+              </button>
+            </motion.div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
   );
 };
 
