@@ -153,34 +153,77 @@ const Packages = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="bg-gray-50 rounded-2xl p-8 text-center"
+              className="bg-gray-50 rounded-2xl p-8"
             >
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4 text-center">
                 {t.packages.plans[selectedPlan].name} {isArabic ? 'تفاصيل الباقة' : 'Package Details'}
               </h2>
-              <p className="text-lg text-gray-600 mb-6">
+              <p className="text-lg text-gray-600 mb-6 text-center">
                 {t.packages.plans[selectedPlan].description}
               </p>
-              <ul className="space-y-4 mb-8">
-                {t.packages.plans[selectedPlan].features.map((feature, featureIndex) => (
-                  <li key={featureIndex} className="flex items-start justify-center">
-                    <Check className="text-green-500 mr-3 mt-0.5 flex-shrink-0" size={18} />
-                    <span className="text-gray-700">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="text-center">
+              <div className="space-y-6">
+                {/* Features */}
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                    {isArabic ? 'الميزات المدرجة' : 'Included Features'}
+                  </h3>
+                  <ul className="space-y-4">
+                    {t.packages.plans[selectedPlan].features.map((feature, featureIndex) => (
+                      <li key={featureIndex} className="flex items-start justify-center">
+                        <Check className="text-green-500 mr-3 mt-0.5 flex-shrink-0" size={18} />
+                        <span className="text-gray-700">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                {/* Benefits */}
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                    {isArabic ? 'الفوائد' : 'Benefits'}
+                  </h3>
+                  <p className="text-gray-600">
+                    {t.packages.plans[selectedPlan].benefits || (isArabic ? 'تم تصميم هذه الباقة لتقديم أفضل قيمة لاحتياجاتك.' : 'This package is designed to deliver the best value for your needs.')}
+                  </p>
+                </div>
+                {/* Support Level */}
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                    {isArabic ? 'مستوى الدعم' : 'Support Level'}
+                  </h3>
+                  <p className="text-gray-600">
+                    {t.packages.plans[selectedPlan].supportLevel || (isArabic ? 'دعم أساسي عبر البريد الإلكتروني.' : 'Basic email support.')}
+                  </p>
+                </div>
+                {/* Delivery Timeline */}
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                    {isArabic ? 'الجدول الزمني للتسليم' : 'Delivery Timeline'}
+                  </h3>
+                  <p className="text-gray-600">
+                    {t.packages.plans[selectedPlan].deliveryTimeline || (isArabic ? 'التسليم في غضون 5-7 أيام عمل.' : 'Delivery within 5-7 business days.')}
+                  </p>
+                </div>
+              </div>
+              <div className="text-center mt-6">
                 <span className="text-3xl font-bold text-gray-900">
                   {t.packages.plans[selectedPlan].price}
                 </span>
                 <span className="text-gray-600 ml-2">/ {t.packages.plans[selectedPlan].period}</span>
               </div>
-              <button
-                className="mt-6 inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-500 to-emerald-600 text-white font-semibold rounded-full hover:from-primary-600 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
-                onClick={() => setShowDetails(false)}
-              >
-                {isArabic ? 'إخفاء التفاصيل' : 'Hide Details'}
-              </button>
+              <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
+                <button
+                  className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-500 to-emerald-600 text-white font-semibold rounded-full hover:from-primary-600 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                >
+                  {isArabic ? 'ابدأ الآن' : 'Get Started Now'}
+                  <ArrowRight className={`ml-2 ${isArabic ? 'rotate-180 mr-2 ml-0' : ''}`} size={20} />
+                </button>
+                <button
+                  className="inline-flex items-center px-8 py-4 text-primary-600 border-2 border-primary-500 rounded-full hover:bg-primary-50 transition-all duration-300"
+                  onClick={() => setShowDetails(false)}
+                >
+                  {isArabic ? 'إخفاء التفاصيل' : 'Hide Details'}
+                </button>
+              </div>
             </motion.div>
           </div>
         </section>
@@ -194,7 +237,7 @@ const Packages = () => {
             variants={customSectionVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, invitation: 0.2 }}
             className="bg-gradient-to-r from-primary-50 to-emerald-50 rounded-3xl p-8 md:p-12 text-center"
           >
             <div className="w-20 h-20 bg-gradient-to-r from-primary-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6">
