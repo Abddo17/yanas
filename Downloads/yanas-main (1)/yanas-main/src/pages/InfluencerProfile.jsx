@@ -307,7 +307,7 @@ const InfluencerProfile = () => {
           <p className="text-xl text-gray-200 mb-8">
             {isArabic 
               ? 'تواصل معنا لمناقشة فرص التعاون مع هذا المؤثر'
-              : 'Get in touch to discuss collaboration opportunities with this influencer'
+              : 'Get in touch to discuss colalaboration opportunities with this influencer'
             }
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
