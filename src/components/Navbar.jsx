@@ -1,23 +1,57 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Globe } from 'lucide-react';
+import { Menu, X, Globe, Users } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Lenis from '@studio-freight/lenis';
+import clsx from 'clsx';
 import { useLanguage } from '../contexts/LanguageContext.jsx';
 import { content } from '../data/content.js';
 
+gsap.registerPlugin(ScrollTrigger);
+
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { language, toggleLanguage, isArabic } = useLanguage();
   const location = useLocation();
   const t = content[language];
 
+  const navRef = useRef(null);
+
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+    const lenis = new Lenis();
+    const updateScrollTrigger = (time) => lenis.raf(time * 1000);
+    gsap.ticker.add(updateScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      const showAnim = gsap.from(navRef.current, {
+        yPercent: -150,
+        paused: true,
+        duration: 0.3,
+        ease: 'power2.inOut',
+      }).progress(1);
+
+      ScrollTrigger.create({
+        start: 'top top-=-100',
+        end: 'max',
+        onUpdate: (self) => (self.direction === -1 ? showAnim.play() : showAnim.reverse()),
+      });
+      
+      const tl = gsap.timeline({ delay: 0.5 });
+      tl.from(navRef.current, { y: 20, opacity: 0, duration: 0.8, ease: 'power3.out' });
+      // We no longer need to animate nav-items here as they are part of the main animation
+    }, navRef);
+    
+    // Body scroll lock
+    document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+
+    return () => {
+      ctx.revert();
+      gsap.ticker.remove(updateScrollTrigger);
+      document.body.style.overflow = '';
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isMenuOpen]);
 
   const navItems = [
     { name: t.nav.home, path: '/' },
@@ -29,107 +63,64 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      scrolled 
-        ? 'bg-white/95 backdrop-blur-md shadow-lg' 
-        : 'bg-transparent'
-    }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-r from-primary-500 to-emerald-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">CP</span>
-            </div>
-            <span className={`font-bold text-lg ${
-              scrolled ? 'text-gray-900' : 'text-white'
-            }`}>
-              Content Pro
-            </span>
-          </Link>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`font-medium transition-colors duration-200 ${
-                  location.pathname === item.path
-                    ? 'text-primary-500'
-                    : scrolled
-                    ? 'text-gray-700 hover:text-primary-500'
-                    : 'text-white hover:text-primary-200'
-                }`}
-              >
-                {item.name}
-              </Link>
-            ))}
-            
-            {/* Language Toggle */}
-            <button
-              onClick={toggleLanguage}
-              className={`flex items-center space-x-1 px-3 py-2 rounded-lg transition-colors duration-200 ${
-                scrolled
-                  ? 'text-gray-700 hover:bg-gray-100'
-                  : 'text-white hover:bg-white/10'
-              }`}
-            >
-              <Globe size={16} />
-              <span className="text-sm font-medium">
-                {isArabic ? 'EN' : 'عربي'}
-              </span>
-            </button>
+    <div ref={navRef} className="fixed top-4 left-0 right-0 z-50 flex justify-center">
+      <nav className="flex items-center gap-x-2 rounded-full bg-white/60 backdrop-blur-xl shadow-lg p-2 border border-white/30">
+        <Link to="/" className="flex items-center space-x-2 px-3">
+          <div className="w-8 h-8 bg-gradient-to-r from-primary-500 to-emerald-600 rounded-full flex items-center justify-center">
+            <span className="text-white font-bold text-sm">CP</span>
           </div>
+          <span className="font-bold text-lg text-gray-900">Content Pro</span>
+        </Link>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden flex items-center space-x-2">
-            <button
-              onClick={toggleLanguage}
-              className={`p-2 rounded-lg transition-colors duration-200 ${
-                scrolled
-                  ? 'text-gray-700 hover:bg-gray-100'
-                  : 'text-white hover:bg-white/10'
-              }`}
+        <div className="h-6 w-px bg-gray-900/10"></div>
+
+        <div className="hidden md:flex items-center space-x-1">
+          {navItems.map((item) => (
+            <Link
+              key={item.path}
+              to={item.path}
+              className={clsx(
+                'px-4 py-2 rounded-full text-sm font-medium transition-all duration-300',
+                location.pathname === item.path
+                  ? 'bg-gradient-to-r from-primary-500 to-emerald-600 text-white shadow-md'
+                  : 'text-gray-800 hover:text-primary-600 hover:bg-gray-400/20'
+              )}
             >
-              <Globe size={20} />
-            </button>
+              {item.name}
+            </Link>
+          ))}
+        </div>
+
+        <div className="flex items-center space-x-1">
+          <button
+            onClick={toggleLanguage}
+            className="hidden md:flex items-center space-x-1 px-3 py-2 rounded-full text-sm font-medium text-gray-800 hover:text-primary-600 hover:bg-gray-400/20 transition-all duration-300"
+          >
+            <Globe size={16} />
+            <span>{isArabic ? 'EN' : 'AR'}</span>
+          </button>
+          <div className="md:hidden">
             <button
-              onClick={() => setIsOpen(!isOpen)}
-              className={`p-2 rounded-lg transition-colors duration-200 ${
-                scrolled
-                  ? 'text-gray-700 hover:bg-gray-100'
-                  : 'text-white hover:bg-white/10'
-              }`}
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-expanded={isMenuOpen}
+              className="p-2 rounded-full text-gray-800"
             >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
+              <AnimatePresence initial={false} mode="wait">
+                <motion.div
+                  key={isMenuOpen ? 'x' : 'menu'}
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+                </motion.div>
+              </AnimatePresence>
             </button>
           </div>
         </div>
-
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="md:hidden bg-white border-t border-gray-200 shadow-lg">
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              {navItems.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  onClick={() => setIsOpen(false)}
-                  className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
-                    location.pathname === item.path
-                      ? 'text-primary-500 bg-primary-50'
-                      : 'text-gray-700 hover:text-primary-500 hover:bg-gray-50'
-                  }`}
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-    </nav>
+      </nav>
+    </div>
   );
 };
 
