@@ -10,7 +10,7 @@ const Projects = () => {
   const t = content[language];
   const headerRef = useRef();
   const filterLabelRef = useRef();
-   const filterButtonsRef = useRef([]);
+  const filterButtonsRef = useRef([]);
   const projectsRef = useRef();
   const [selectedCategory, setSelectedCategory] = useState('All');
 
@@ -19,69 +19,75 @@ const Projects = () => {
 
   const projects = [
     {
-      id: 1,
-      title: isArabic ? 'حملة صالون الجمال X' : 'Hair Campaign for X Salon',
-      category: 'Beauty',
-      platform: 'Instagram',
-      type: 'Reel',
-      image: 'https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg?auto=compress&cs=tinysrgb&w=600',
-      views: '125K',
-      engagement: '8.5%',
-    },
+    id: 1,
+    title: isArabic ? 'حملة الموضة المتطورة X' : 'Fashion Forward Campaign X',
+    category: 'Fashion',
+    platform: 'Instagram',
+    type: 'Reel',
+    image: 'https://images.pexels.com/photos/1926769/pexels-photo-1926769.jpeg?auto=compress&cs=tinysrgb&w=600',
+    views: '450k',
+    engagement: '50k',
+    link: 'https://www.instagram.com/reel/DEAqgFJMNxq/?igsh=cGVmYjdqNHVoaXZz',
+  },
     {
-      id: 2,
-      title: isArabic ? 'كليب الفنان Y' : 'Music Video for Artist Y',
-      category: 'Music',
-      platform: 'YouTube',
-      type: 'Video',
-      image: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=600',
-      views: '450K',
-      engagement: '12.3%',
-    },
+    id: 2,
+    title: isArabic ? 'حملة كافيه دافيدوف X' : 'Davidoff Café Campaign X',
+    category: 'Lifestyle',
+    platform: 'Instagram',
+    type: 'Reel',
+    image: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=600',
+    views: '100k',
+    engagement: '12k',
+    link: 'https://www.instagram.com/reel/DFiN0gpTmW4/',
+  },
     {
-      id: 3,
-      title: isArabic ? 'حملة مطعم Z' : 'Food Campaign for Restaurant Z',
-      category: 'Food',
-      platform: 'TikTok',
-      type: 'Reel',
-      image: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=600',
-      views: '89K',
-      engagement: '15.2%',
-    },
+    id: 3,
+    title: isArabic ? 'حملة ماسكارا سكاي هاي X' : 'Sky High Mascara Campaign X',
+    category: 'Beauty',
+    platform: 'Instagram',
+    type: 'Reel',
+    image: 'https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg?auto=compress&cs=tinysrgb&w=600',
+    views: '90k',
+    engagement: '10k',
+    link: 'https://www.instagram.com/reel/C6Rkg8uPCCt/',
+  },
     {
-      id: 4,
-      title: isArabic ? 'مجموعة الموضة الصيفية' : 'Summer Fashion Collection',
-      category: 'Fashion',
-      platform: 'Instagram',
-      type: 'Reel',
-      image: 'https://images.pexels.com/photos/1926769/pexels-photo-1926769.jpeg?auto=compress&cs=tinysrgb&w=600',
-      views: '203K',
-      engagement: '9.8%',
-    },
+    id: 4,
+    title: isArabic ? 'حملة هواوي فري كليب X' : 'Huawei FreeClip Campaign X',
+    category: 'Fashion',
+    platform: 'Instagram',
+    type: 'Reel',
+    image: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=600',
+    views: '300k',
+    engagement: '34k',
+    link: 'https://www.instagram.com/reel/C1PfpEGpdK8/?igsh=MTFsbmZpMnp5cnk0Zw==',
+  },
     {
-      id: 5,
-      title: isArabic ? 'تغطية حفل زفاف فاخر' : 'Luxury Wedding Coverage',
-      category: 'Wedding',
-      platform: 'YouTube',
-      type: 'Video',
-      image: 'https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=600',
-      views: '67K',
-      engagement: '18.7%',
-    },
+    id: 5,
+    title: isArabic ? 'محتوى إسلام أفرو X' : 'Islamafro Content X',
+    category: 'Lifestyle',
+    platform: 'Instagram',
+    type: 'Reel',
+    image: 'https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=600',
+    views: '200k',
+    engagement: '20k',
+    link: 'https://www.instagram.com/reel/DFvQ01RTz8a/',
+  },
     {
-      id: 6,
-      title: isArabic ? 'سلسلة نمط الحياة' : 'Lifestyle Series',
-      category: 'Lifestyle',
-      platform: 'TikTok',
-      type: 'Reel',
-      image: 'https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=600',
-      views: '156K',
-      engagement: '11.4%',
-    },
+    id: 6,
+    title: isArabic ? 'حملة ميت بوك D16 X' : 'MateBook D16 Campaign X',
+    category: 'Technology',
+    platform: 'Instagram',
+    type: 'Reel',
+    image: 'https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=600',
+    views: '125k',
+    engagement: '15k',
+    link: 'https://www.instagram.com/reel/C1pDxUAP9JJ/',
+  },
   ];
 
-  const filteredProjects = selectedCategory === 'All' 
-    ? projects 
+  const filteredProjects = selectedCategory === 'All'
+    ? projects
     : projects.filter(project => project.category === selectedCategory);
 
   useEffect(() => {
@@ -95,8 +101,8 @@ const Projects = () => {
   return (
     <div className="min-h-screen pt-20 bg-white">
       {/* Header */}
-       <section className="py-20 bg-gradient-to-r from-primary-600 to-emerald-600 relative z-10">
-        <div  className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ${isArabic ? 'text-right' : 'text-center'}`}>
+      <section className="py-20 bg-gradient-to-r from-primary-600 to-emerald-600 relative z-10">
+        <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ${isArabic ? 'text-right' : 'text-center'}`}>
           <h1 className={`text-4xl md:text-5xl font-bold text-white mb-4 ${isArabic ? 'font-arabic' : 'font-sans'}`}>
             {isArabic ? 'مشاريعنا' : 'Our Projects'}
           </h1>
@@ -109,7 +115,7 @@ const Projects = () => {
       </section>
 
       {/* Filter Section */}
-       <section className="py-8 bg-white border-b">
+      <section className="py-8 bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className={`flex items-center justify-between flex-wrap gap-6 ${isArabic ? 'flex-row-reverse' : ''}`}>
             <div ref={filterLabelRef} className={`flex items-center ${isArabic ? 'space-x-reverse space-x-4' : 'space-x-4'}`}>
@@ -151,9 +157,11 @@ const Projects = () => {
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <button className="bg-white/20 backdrop-blur-sm rounded-full p-4 hover:bg-white/30 transition-colors duration-200">
-                      <Play className="text-white" size={24} />
-                    </button>
+                    <a href={project.link} target="_blank" rel="noopener noreferrer">
+                      <button className="bg-white/20 backdrop-blur-sm rounded-full p-4 hover:bg-white/30 transition-colors duration-200">
+                        <Play className="text-white" size={24} />
+                      </button>
+                    </a>
                   </div>
                   <div className="absolute top-4 left-4">
                     <span className={`px-3 py-1 rounded-full text-xs font-medium ${
@@ -186,22 +194,19 @@ const Projects = () => {
                       {project.engagement} {isArabic ? 'تفاعل' : 'engagement'}
                     </span>
                   </div>
-                  <button className="w-full flex items-center justify-center px-4 py-2 bg-gray-100 hover:bg-primary-500 hover:text-white rounded-lg transition-all duration-200 group">
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full flex items-center justify-center px-4 py-2 bg-gray-100 hover:bg-primary-500 hover:text-white rounded-lg transition-all duration-200 group"
+                  >
                     {isArabic ? 'عرض التفاصيل' : 'View Details'}
                     <ExternalLink size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-200" />
-                  </button>
+                  </a>
                 </div>
               </div>
             ))}
           </div>
-
-          {/* Load More Button */}
-          {/* <div className="text-center mt-12">
-            <button className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-500 to-emerald-600 text-white font-semibold rounded-full hover:from-primary-600 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
-              {t.projects.cta}
-              <ExternalLink className={`ml-2 ${isArabic ? 'rotate-180 mr-2 ml-0' : ''}`} size={20} />
-            </button>
-          </div> */}
         </div>
       </section>
     </div>
