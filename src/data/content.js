@@ -51,7 +51,7 @@ export const content = {
       title: 'Influencers',
       subtitle: 'We work with a strong and diverse network of influencers across the Middle East. We focus on real influence — not just follower count.',
       search: 'Search influencers...',
-      categories: ['All', 'Beauty', 'Lifestyle', 'Fashion', 'Food', 'Tech', 'Travel'],
+      categories: ['All', 'Beauty', 'Lifestyle', 'Fashion', 'Food', 'Tech', 'Travel','Comedy','Culture','Music','Marketing','Finance','Luxury','Entertainment','Design'],
     },
     services: {
       title: 'Services',
@@ -256,7 +256,7 @@ export const content = {
       title: 'المؤثرين',
       subtitle: 'نعمل مع مؤثرين مختارين بعناية — ما بيهمنا عدد المتابعين، بيهمنا مدى التأثير الحقيقي.',
       search: 'البحث عن المؤثرين...',
-      categories: ['الكل', 'الجمال', 'نمط الحياة', 'الموضة', 'الطعام', 'التقنية', 'السفر'],
+      categories: ['الكل', 'جمال','كوميديا','ثقافة','موسيقى','تسويق','مالية','فخامة','ترفيه','تصميم', 'نمط الحياة', 'موضة', 'طعام', 'تقنية', 'سفر'],
     },
     services: {
       title: 'خدماتنا',

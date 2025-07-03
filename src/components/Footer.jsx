@@ -35,7 +35,7 @@ const Footer = () => {
       const revealTl = gsap.timeline({
         scrollTrigger: {
           trigger: footerRef.current,
-          start: 'top bottom+=100',
+          start: 'top bottom+=10',
           end: 'bottom bottom',
           scrub: 1,
         },

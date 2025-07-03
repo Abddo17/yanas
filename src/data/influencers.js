@@ -1,3 +1,38 @@
+import ghaith_marwan from "../../assets/images/ghaith_marwan.webp";
+import saraaalwari from "../../assets/images/saraaalwari.webp";
+import abbas_shibani from "../../assets/images/abbas_shibani.webp";
+import anas_alshayb from "../../assets/images/anas_alshayb.webp";
+import bessan_lsmail from "../../assets/images/bessan.lsmail.webp";
+import nourrmar from "../../assets/images/5nourrmar.webp";
+import barhom from "../../assets/images/barhom.webp";
+import mahmoudmahe from "../../assets/images/mahmoudmahe.webp";
+import islamafro from "../../assets/images/islamafro.webp";
+import qamaraltaiy from "../../assets/images/qamaraltaiy.webp";
+import alaa_ayyman from "../../assets/images/alaa.ayyman.webp";
+import ahmadkiswaniii from "../../assets/images/ahmadkiswaniii.webp";
+import amira_alhusen from "../../assets/images/amira_alhusen.webp";
+import ghadighali from "../../assets/images/ghadighali.webp";
+import akhras from "../../assets/images/akhras.webp";
+import movlogs from "../../assets/images/movlogs.webp";
+import itskhateb from "../../assets/images/itskhateb.webp";
+import leen_mohd98 from "../../assets/images/leen_mohd98.webp";
+import lana_mohd89 from "../../assets/images/lana_mohd89.webp";
+import nasheet from "../../assets/images/nasheet.webp";
+import douhalaribi from "../../assets/images/douhalaribi.webp";
+import rahmalaribiii from "../../assets/images/rahmalaribiii.webp";
+import tareqhaski1 from "../../assets/images/tareqhaski1.webp";
+import p6_6z from "../../assets/images/p6_6z.webp";
+import missdouaa from "../../assets/images/missdouaa.webp";
+import kindy_man from "../../assets/images/kindy_man.webp";
+import moassaadd from "../../assets/images/moassaadd.webp";
+import eddie6 from "../../assets/images/m.eddie6.jpg";
+import ossymarwah from "../../assets/images/ossymarwah.webp";
+
+
+
+
+
+
 export const influencers = [
   {
     "id": 1,
@@ -28,7 +63,7 @@ export const influencers = [
     "id": 2,
     "name": "Ghaith Marwan",
     "nameAr": "غيث مروان",
-    "image": "",
+    "image": ghaith_marwan,
     "category": "lifestyle",
     "categoryAr": "نمط الحياة",
     "description": "Social media influencer known for diverse content including food, travel, and relationships.",
@@ -51,7 +86,7 @@ export const influencers = [
     "id": 3,
     "name": "Sara Alwari",
     "nameAr": "سارة الواري",
-    "image": "",
+    "image": saraaalwari,
     "category": "lifestyle",
     "categoryAr": "نمط الحياة",
     "description": "TikTok influencer known for collaborative content with Ghaith Marwan, focusing on lifestyle and relationships.",
@@ -73,7 +108,7 @@ export const influencers = [
     "id": 4,
     "name": "Abbas Shibani",
     "nameAr": "عباس شيباني",
-    "image": "",
+    "image": abbas_shibani,
     "category": "comedy",
     "categoryAr": "كوميديا",
     "description": "Iraqi actor and comedian known for pranks and challenges, especially with his mother.",
@@ -99,7 +134,7 @@ export const influencers = [
     "id": 5,
     "name": "Anas Elshayib",
     "nameAr": "أنس الشايب",
-    "image": "",
+    "image": anas_alshayb,
     "category": "culture",
     "categoryAr": "ثقافة",
     "description": "Content creator focusing on cultural exploration of Middle Eastern regions.",
@@ -121,7 +156,7 @@ export const influencers = [
     "id": 6,
     "name": "Bessan Ismail",
     "nameAr": "بيسان إسماعيل",
-    "image": "",
+    "image": bessan_lsmail,
     "category": "lifestyle",
     "categoryAr": "نمط الحياة",
     "description": "Syrian singer and influencer known for diverse content including music and challenges.",
@@ -146,7 +181,7 @@ export const influencers = [
     "id": 7,
     "name": "Nour Mar",
     "nameAr": "نور مار",
-    "image": "",
+    "image": nourrmar,
     "category": "music",
     "categoryAr": "موسيقى",
     "description": "Viral young artist focused on music with a massive social media following.",
@@ -168,7 +203,7 @@ export const influencers = [
     "id": 8,
     "name": "Barhom",
     "nameAr": "برهوم",
-    "image": "",
+    "image":barhom,
     "category": "comedy",
     "categoryAr": "كوميديا",
     "description": "TikTok influencer known for engaging comedic skits and live sessions.",
@@ -190,7 +225,7 @@ export const influencers = [
     "id": 9,
     "name": "Mahmoud Maher",
     "nameAr": "محمود ماهر",
-    "image": "",
+    "image": mahmoudmahe,
     "category": "marketing",
     "categoryAr": "تسويق",
     "description": "Content marketer specializing in SEO, social media, and copywriting.",
@@ -210,7 +245,7 @@ export const influencers = [
     "id": 10,
     "name": "Islam Afro",
     "nameAr": "إسلام أفرو",
-    "image": "",
+    "image": islamafro,
     "category": "comedy",
     "categoryAr": "كوميديا",
     "description": "American Muslim TikTok influencer known for comedic sketches and pranks.",
@@ -232,7 +267,7 @@ export const influencers = [
     "id": 11,
     "name": "Qamar Altaiy",
     "nameAr": "قمر الطائي",
-    "image": "",
+    "image":qamaraltaiy,
     "category": "beauty",
     "categoryAr": "جمال",
     "description": "Iraqi TikTok influencer known for beauty tutorials and lifestyle content.",
@@ -254,7 +289,7 @@ export const influencers = [
     "id": 12,
     "name": "Alaa Ayman",
     "nameAr": "علاء أيمن",
-    "image": "",
+    "image": alaa_ayyman,
     "category": "finance",
     "categoryAr": "مالية",
     "description": "Financial influencer simplifying complex trading and crypto topics.",
@@ -276,7 +311,7 @@ export const influencers = [
     "id": 13,
     "name": "Ahmad Kiswani",
     "nameAr": "أحمد قيسواني",
-    "image": "",
+    "image": ahmadkiswaniii,
     "category": "unknown",
     "categoryAr": "غير معروف",
     "description": "Social media influencer with a significant following across platforms.",
@@ -296,7 +331,7 @@ export const influencers = [
     "id": 14,
     "name": "Amira Alhusen",
     "nameAr": "أميرة الحسين",
-    "image": "",
+    "image": amira_alhusen,
     "category": "lifestyle",
     "categoryAr": "نمط الحياة",
     "description": "UAE TikToker known for comedy, lifestyle tips, and brand integrations.",
@@ -320,7 +355,7 @@ export const influencers = [
     "id": 15,
     "name": "Ghadi Ghali",
     "nameAr": "غدي غالي",
-    "image": "",
+    "image": ghadighali,
     "category": "comedy",
     "categoryAr": "كوميديا",
     "description": "Lebanese TikTok star known for flirting comedy and spontaneous interactions.",
@@ -345,7 +380,7 @@ export const influencers = [
     "id": 16,
     "name": "Hassan Akhras",
     "nameAr": "حسن أخرس",
-    "image": "",
+    "image": akhras,
     "category": "luxury",
     "categoryAr": "فخامة",
     "description": "Syrian watch enthusiast and founder of Arab Watch Guide.",
@@ -368,7 +403,7 @@ export const influencers = [
     "id": 17,
     "name": "Mo Vlogs",
     "nameAr": "مو فلوغز",
-    "image": "",
+    "image": movlogs,
     "category": "luxury",
     "categoryAr": "فخامة",
     "description": "YouTuber showcasing a luxury lifestyle with high-end items.",
@@ -390,7 +425,7 @@ export const influencers = [
     "id": 18,
     "name": "Itskhateb",
     "nameAr": "إتسخاطب",
-    "image": "",
+    "image": itskhateb,
     "category": "lifestyle",
     "categoryAr": "نمط الحياة",
     "description": "Dubai-based TikTok influencer with regionally focused content.",
@@ -412,7 +447,7 @@ export const influencers = [
     "id": 19,
     "name": "Leen Mohd",
     "nameAr": "لين محمد",
-    "image": "",
+    "image": leen_mohd98,
     "category": "beauty",
     "categoryAr": "جمال",
     "description": "TikTok influencer focusing on beauty and collaborative content.",
@@ -434,7 +469,7 @@ export const influencers = [
     "id": 20,
     "name": "Lana Mohd",
     "nameAr": "لانا محمد",
-    "image": "",
+    "image": lana_mohd89,
     "category": "lifestyle",
     "categoryAr": "نمط الحياة",
     "description": "YouTuber focusing on podcasts and collaborative content with Leen Mohd.",
@@ -456,7 +491,7 @@ export const influencers = [
     "id": 21,
     "name": "Nasheet",
     "nameAr": "نشيط",
-    "image": "",
+    "image": nasheet,
     "category": "entertainment",
     "categoryAr": "ترفيه",
     "description": "Multi-talented creator known for diverse content in entertainment and sports.",
@@ -478,7 +513,7 @@ export const influencers = [
     "id": 22,
     "name": "Douha Laribi",
     "nameAr": "ضحى العريبي",
-    "image": "",
+    "image": douhalaribi,
     "category": "lifestyle",
     "categoryAr": "نمط الحياة",
     "description": "Tunisian TikTok star known for engaging content and unique style.",
@@ -500,7 +535,7 @@ export const influencers = [
     "id": 23,
     "name": "Rahma Laribi",
     "nameAr": "رحمة العريبي",
-    "image": "",
+    "image": rahmalaribiii,
     "category": "lifestyle",
     "categoryAr": "نمط الحياة",
     "description": "Tunisian TikTok influencer known for lifestyle and comedic content.",
@@ -522,7 +557,7 @@ export const influencers = [
     "id": 24,
     "name": "T Haski",
     "nameAr": "طارق حسكي",
-    "image": "",
+    "image": tareqhaski1,
     "category": "comedy",
     "categoryAr": "كوميديا",
     "description": "Syrian influencer blending comedic skits with political commentary.",
@@ -545,7 +580,7 @@ export const influencers = [
     "id": 25,
     "name": "P66z",
     "nameAr": "بي66ز",
-    "image": "",
+    "image": p6_6z,
     "category": "lifestyle",
     "categoryAr": "نمط الحياة",
     "description": "TikTok creator focusing on communication techniques and personal milestones.",
@@ -567,7 +602,7 @@ export const influencers = [
     "id": 26,
     "name": "Miss Douaa Officiel",
     "nameAr": "ميس ضواء أوفيسيل",
-    "image": "",
+    "image": missdouaa,
     "category": "design",
     "categoryAr": "تصميم",
     "description": "Moroccan TikTok influencer focusing on trends and design.",
@@ -589,7 +624,7 @@ export const influencers = [
     "id": 27,
     "name": "Kindy Man",
     "nameAr": "كيندي مان",
-    "image": "",
+    "image": kindy_man,
     "category": "entertainment",
     "categoryAr": "ترفيه",
     "description": "Emirati actor and comedian with diverse content across platforms.",
@@ -612,7 +647,7 @@ export const influencers = [
     "id": 28,
     "name": "Moassaadd",
     "nameAr": "محمد أسعد",
-    "image": "",
+    "image": moassaadd,
     "category": "lifestyle",
     "categoryAr": "نمط الحياة",
     "description": "TikTok creator sharing personal life milestones.",
@@ -634,7 +669,7 @@ export const influencers = [
     "id": 29,
     "name": "M Eddie6",
     "nameAr": "إم إدي6",
-    "image": "",
+    "image": eddie6,
     "category": "lifestyle",
     "categoryAr": "نمط الحياة",
     "description": "Dubai-based TikTok creator with diverse content including comedy and sports.",
@@ -656,7 +691,7 @@ export const influencers = [
     "id": 30,
     "name": "Ossy Marwah",
     "nameAr": "أوسي مروة",
-    "image": "",
+    "image": ossymarwah,
     "category": "lifestyle",
     "categoryAr": "نمط الحياة",
     "description": "Influencer with diverse content across entertainment and travel.",

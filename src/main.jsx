@@ -7,7 +7,7 @@ import { LanguageProvider } from './contexts/LanguageContext.jsx';
 import { AnimationProvider } from './contexts/AnimationContext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+
     <BrowserRouter>
       <LanguageProvider>
         <AnimationProvider>
@@ -15,5 +15,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </AnimationProvider>
       </LanguageProvider>
     </BrowserRouter>
-  </React.StrictMode>,
+
 );
