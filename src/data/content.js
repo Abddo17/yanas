@@ -14,6 +14,26 @@ export const content = {
         subtitle: 'From viral campaigns to cinematic visuals — we produce content that elevates your brand.',
         cta: 'What We Do',
       },
+      story1: {
+        title: "Visual Creativity That Moves Brands",
+        text: "We craft campaigns and visual content that make a real impact. From concept to execution, we tell your story with cinematic flair and professional polish.",
+        cta: "See Our Work"
+      },
+      story2: {
+        title: "Exclusive Influencer Network",
+        text: "We partner with top creators and influencers to build authentic collaborations that amplify your brand.",
+        cta: "Meet Influencers"
+      },
+      story3: {
+        title: "Full-Suite Production Services",
+        text: "From video production to creative strategy, we deliver end-to-end solutions that drive your brand forward.",
+        cta: "Explore Services"
+      },
+      studio: {
+        title: "Our State-of-the-Art Studio",
+        text: "Our dedicated studio space is equipped with cutting-edge technology and designed to bring your creative visions to life. From live shoots to post-production, we provide a seamless and inspiring environment.",
+        cta: "Discover the Studio"
+      },
       services: {
         title: 'What We Do',
         subtitle: 'We\'re a creative production team delivering bold visuals and powerful storytelling across the region.',
@@ -218,6 +238,26 @@ export const content = {
         title: 'نصنع محتوى بصرياً يغيّر نظرة الجمهور لعلامتك التجارية.',
         subtitle: 'من الحملات الفيروسية إلى الفيديوهات السينمائية — نبتكر محتوى يحكي قصتك ويترك أثراً.',
         cta: 'شاهد أعمالنا',
+      },
+      story1: {
+        title: "إبداع بصري يحرّك العلامات التجارية",
+        text: "نصنع حملات ومحتوى بصري يترك أثراً حقيقياً. من الفكرة إلى التنفيذ، نروي قصتك بأسلوب سينمائي واحترافي.",
+        cta: "شاهد أعمالنا"
+      },
+      story2: {
+        title: "شبكة مؤثرين حصرية",
+        text: "نتعاون مع أفضل صناع المحتوى والمؤثرين لبناء شراكات أصيلة تعزز علامتك التجارية.",
+        cta: "تعرف على المؤثرين"
+      },
+      story3: {
+        title: "خدمات إنتاج متكاملة",
+        text: "من إنتاج الفيديو إلى الاستراتيجية الإبداعية، نقدم حلولاً شاملة تدفع علامتك للأمام.",
+        cta: "استكشف الخدمات"
+      },
+      studio: {
+        title: "استوديو متطور وحديث",
+        text: "استوديو مجهز بأحدث التقنيات لتحقيق رؤاك الإبداعية. من التصوير المباشر إلى المونتاج، نوفر بيئة ملهمة وسلسة.",
+        cta: "اكتشف الاستوديو"
       },
       services: {
         title: 'ماذا نفعل',

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { useAnimation } from './contexts/AnimationContext.jsx';
 import Navbar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
@@ -10,13 +10,19 @@ import InfluencerProfile from './pages/InfluencerProfile.jsx';
 import Services from './pages/Services.jsx';
 import Packages from './pages/Packages.jsx';
 import Studio from './pages/Studio.jsx';
+import { useLenis } from "./contexts/LenisContext";
 
 function App() {
   const { initializeAnimations } = useAnimation();
+  const location = useLocation();
+  const lenis = useLenis();
 
   useEffect(() => {
     initializeAnimations();
-  }, [initializeAnimations]);
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true });
+    }
+  }, [initializeAnimations, location, lenis]);
 
   return (
     <div className="min-h-screen bg-gray-50 font-emerald">

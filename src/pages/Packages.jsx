@@ -3,6 +3,20 @@ import { Check, Star, ArrowRight, Zap, Crown, Rocket, Infinity } from 'lucide-re
 import { useLanguage } from '../contexts/LanguageContext.jsx';
 import { useAnimation } from '../contexts/AnimationContext.jsx';
 import { content } from '../data/content.js';
+import { motion } from "framer-motion";
+
+const pageVariants = {
+  initial: { opacity: 0, x: 100 },
+  animate: { opacity: 1, x: 0 },
+  exit: { opacity: 0, x: -100 },
+};
+
+const pageTransition = {
+  type: "spring",
+  stiffness: 50,
+  damping: 20,
+  duration: 0.6,
+};
 
 const Packages = () => {
   const { language, isArabic } = useLanguage();
@@ -30,7 +44,14 @@ const Packages = () => {
   }, [animateOnScroll]);
 
   return (
-    <div className="min-h-screen pt-20 bg-gray-50">
+    <motion.div
+      className="min-h-screen pt-20 bg-white"
+      variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      transition={pageTransition}
+    >
       {/* Header */}
       <section className="py-20 bg-gradient-to-r from-primary-600 to-emerald-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -228,7 +249,7 @@ const Packages = () => {
           </div>
         </div>
       </section>
-    </div>
+    </motion.div>
   );
 };
 

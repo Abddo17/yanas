@@ -4,6 +4,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useLanguage } from '../contexts/LanguageContext.jsx';
 import { content } from '../data/content.js';
+import logoImg from '../assets/images/withou texte2.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -71,13 +72,13 @@ const Footer = () => {
     <div className="relative z-10">
       <footer
         ref={footerRef}
-        className="relative bg-slate-900 text-white pt-24 pb-12 overflow-hidden"
+        className="relative bg-slate-900 text-white pt-10 pb-6 overflow-hidden"
       >
         {/* --- The Aurora Gradient Container --- */}
-        <div className="absolute inset-0 z-0 opacity-40">
-          <div ref={el => blobsRef.current[0] = el} className="absolute w-96 h-96 bg-cyan-600 rounded-full top-1/4 left-1/4 filter blur-3xl"></div>
-          <div ref={el => blobsRef.current[1] = el} className="absolute w-80 h-80 bg-emerald-500 rounded-full bottom-1/4 right-1/4 filter blur-3xl"></div>
-          <div ref={el => blobsRef.current[2] = el} className="absolute w-72 h-72 bg-primary-600 rounded-full top-10 right-10 filter blur-3xl"></div>
+        <div className="absolute inset-0 z-0 opacity-20">
+          <div ref={el => blobsRef.current[0] = el} className="absolute w-64 h-64 bg-cyan-600 rounded-full top-1/3 left-1/4 filter blur-3xl"></div>
+          <div ref={el => blobsRef.current[1] = el} className="absolute w-48 h-48 bg-emerald-500 rounded-full bottom-1/3 right-1/4 filter blur-3xl"></div>
+          <div ref={el => blobsRef.current[2] = el} className="absolute w-40 h-40 bg-primary-600 rounded-full top-10 right-10 filter blur-3xl"></div>
         </div>
 
         {/* --- The Actual Footer Content (on top) --- */}
@@ -85,9 +86,7 @@ const Footer = () => {
             
           <div className="space-y-5"> {/* Column 1 */}
             <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-gradient-to-r from-primary-500 to-emerald-600 rounded-lg flex items-center justify-center">
-                    <span className="text-white font-bold text-lg">CP</span>
-                </div>
+                <img src={logoImg} alt="YS Logo" className="w-10 h-10 object-contain rounded-lg bg-black" />
                 <span className="font-bold text-xl">Content Pro</span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed pr-4">{t.footer.description || '...'}</p>

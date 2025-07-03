@@ -8,6 +8,7 @@ import Lenis from '@studio-freight/lenis';
 import clsx from 'clsx';
 import { useLanguage } from '../contexts/LanguageContext.jsx';
 import { content } from '../data/content.js';
+import logoImg from '../assets/images/withou texte2.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -63,13 +64,11 @@ const Navbar = () => {
   ];
 
   return (
-    <div ref={navRef} className="fixed top-4 left-0 right-0 z-50 flex justify-center">
-      <nav className="flex items-center gap-x-2 rounded-full bg-white/60 backdrop-blur-xl shadow-lg p-2 border border-white/30">
+    <div ref={navRef} className="fixed left-0 right-0 z-50 flex justify-center top-0 sm:top-4">
+      <nav className="flex items-center gap-x-2 rounded-full bg-white/60 backdrop-blur-xl shadow-lg p-2 border border-white/30 w-full max-w-3xl mx-auto">
         <Link to="/" className="flex items-center space-x-2 px-3">
-          <div className="w-8 h-8 bg-gradient-to-r from-primary-500 to-emerald-600 rounded-full flex items-center justify-center">
-            <span className="text-white font-bold text-sm">CP</span>
-          </div>
-          <span className="font-bold text-lg text-gray-900">Content Pro</span>
+          <img src={logoImg} alt="YS Logo" className="w-8 h-8 object-contain rounded-full drop-shadow-[0_0_12px_rgba(16,185,129,0.7)]" />
+          <span className="font-bold text-lg text-gray-900">YANAS</span>
         </Link>
 
         <div className="h-6 w-px bg-gray-900/10"></div>
@@ -103,7 +102,7 @@ const Navbar = () => {
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-expanded={isMenuOpen}
-              className="p-2 rounded-full text-gray-800"
+              className="p-3 rounded-full text-gray-800"
             >
               <AnimatePresence initial={false} mode="wait">
                 <motion.div
@@ -113,13 +112,42 @@ const Navbar = () => {
                   exit={{ rotate: 90, opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+                  {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
                 </motion.div>
               </AnimatePresence>
             </button>
           </div>
         </div>
       </nav>
+      {/* Mobile Menu Overlay */}
+      {isMenuOpen && (
+        <div className="fixed inset-0 z-50 bg-black/70 flex flex-col items-center justify-center md:hidden w-full" onClick={() => setIsMenuOpen(false)}>
+          <div className="bg-white rounded-2xl shadow-xl p-8 w-11/12 max-w-xs flex flex-col items-center space-y-6 overflow-y-auto max-h-[90vh]" onClick={e => e.stopPropagation()}>
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                onClick={() => setIsMenuOpen(false)}
+                className={clsx(
+                  'w-full text-center px-4 py-3 rounded-full text-lg font-semibold transition-all duration-300',
+                  location.pathname === item.path
+                    ? 'bg-gradient-to-r from-primary-500 to-emerald-600 text-white shadow-md'
+                    : 'text-gray-800 hover:text-primary-600 hover:bg-gray-400/20'
+                )}
+              >
+                {item.name}
+              </Link>
+            ))}
+            <button
+              onClick={() => { toggleLanguage(); setIsMenuOpen(false); }}
+              className="w-full flex items-center justify-center space-x-2 px-4 py-3 rounded-full text-lg font-semibold text-gray-800 hover:text-primary-600 hover:bg-gray-400/20 transition-all duration-300"
+            >
+              <Globe size={20} />
+              <span>{isArabic ? 'EN' : 'AR'}</span>
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
