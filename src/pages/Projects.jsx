@@ -1,9 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Play, ExternalLink, Filter } from 'lucide-react';
+import { Play, ExternalLink, Filter, Coffee } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext.jsx';
 import { useAnimation } from '../contexts/AnimationContext.jsx';
 import { content } from '../data/content.js';
-
+import huawei from '../Assets/huawei.png'
+import coffee from '../Assets/coffee.png'
+import masscara from '../Assets/masscara.png'
+import global from '../Assets/global.png'
+import islam from '../Assets/islam.png'
+import matebook from '../Assets/matebook.png'
 const Projects = () => {
   const { language, isArabic } = useLanguage();
   const { animateOnScroll } = useAnimation();
@@ -20,47 +25,47 @@ const Projects = () => {
   const projects = [
     {
     id: 1,
-    title: isArabic ? 'حملة الموضة المتطورة X' : 'Fashion Forward Campaign X',
+    title: isArabic ? 'حملة هواوي فري كليب ' : 'Huawei FreeClip Campaign ',
     category: 'Fashion',
     platform: 'Instagram',
     type: 'Reel',
-    image: 'https://images.pexels.com/photos/1926769/pexels-photo-1926769.jpeg?auto=compress&cs=tinysrgb&w=600',
+    image: huawei,
     views: '450k',
     engagement: '50k',
     link: 'https://www.instagram.com/reel/DEAqgFJMNxq/?igsh=cGVmYjdqNHVoaXZz',
   },
     {
     id: 2,
-    title: isArabic ? 'حملة كافيه دافيدوف X' : 'Davidoff Café Campaign X',
+    title: isArabic ? 'حملة كافيه دافيدوف ' : 'Davidoff Café Campaign ',
     category: 'Lifestyle',
     platform: 'Instagram',
     type: 'Reel',
-    image: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=600',
+    image: coffee,
     views: '100k',
     engagement: '12k',
     link: 'https://www.instagram.com/reel/DFiN0gpTmW4/',
   },
     {
     id: 3,
-    title: isArabic ? 'حملة ماسكارا سكاي هاي X' : 'Sky High Mascara Campaign X',
+    title: isArabic ? 'حملة ماسكارا سكاي هاي ' : 'Sky High Mascara Campaign ',
     category: 'Beauty',
     platform: 'Instagram',
     type: 'Reel',
-    image: 'https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg?auto=compress&cs=tinysrgb&w=600',
+    image: masscara,
     views: '90k',
     engagement: '10k',
     link: 'https://www.instagram.com/reel/C6Rkg8uPCCt/',
   },
     {
     id: 4,
-    title: isArabic ? 'حملة هواوي فري كليب X' : 'Huawei FreeClip Campaign X',
+    title: isArabic ? 'بالقرية العالمية' : 'Globale Village',
     category: 'Fashion',
     platform: 'Instagram',
     type: 'Reel',
-    image: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=600',
+    image: global,
     views: '300k',
     engagement: '34k',
-    link: 'https://www.instagram.com/reel/C1PfpEGpdK8/?igsh=MTFsbmZpMnp5cnk0Zw==',
+    link: 'https://www.instagram.com/reel/C6oWrenvP7E/?igsh=Y25lYndpNHgxdHln',
   },
     {
     id: 5,
@@ -68,18 +73,18 @@ const Projects = () => {
     category: 'Lifestyle',
     platform: 'Instagram',
     type: 'Reel',
-    image: 'https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=600',
+    image: islam,
     views: '200k',
     engagement: '20k',
     link: 'https://www.instagram.com/reel/DFvQ01RTz8a/',
   },
     {
     id: 6,
-    title: isArabic ? 'حملة ميت بوك D16 X' : 'MateBook D16 Campaign X',
+    title: isArabic ? 'حملة ميت بوك D16 ' : 'MateBook D16 Campaign ',
     category: 'Technology',
     platform: 'Instagram',
     type: 'Reel',
-    image: 'https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=600',
+    image: matebook,
     views: '125k',
     engagement: '15k',
     link: 'https://www.instagram.com/reel/C1pDxUAP9JJ/',
