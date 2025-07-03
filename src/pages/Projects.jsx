@@ -18,27 +18,7 @@ const Projects = () => {
   const platforms = ['Instagram', 'TikTok', 'YouTube', 'Reel'];
 
   const projects = [
-    {
-      id: 1,
-      title: isArabic ? 'حملة صالون الجمال X' : 'Hair Campaign for X Salon',
-      category: 'Beauty',
-      platform: 'Instagram',
-      type: 'Reel',
-      image: 'https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg?auto=compress&cs=tinysrgb&w=600',
-      views: '125K',
-      engagement: '8.5%',
-    },
-    {
-      id: 2,
-      title: isArabic ? 'كليب الفنان Y' : 'Music Video for Artist Y',
-      category: 'Music',
-      platform: 'YouTube',
-      type: 'Video',
-      image: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=600',
-      views: '450K',
-      engagement: '12.3%',
-    },
-    {
+   {
       id: 3,
       title: isArabic ? 'حملة مطعم Z' : 'Food Campaign for Restaurant Z',
       category: 'Food',
@@ -47,6 +27,7 @@ const Projects = () => {
       image: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=600',
       views: '89K',
       engagement: '15.2%',
+      url: 'https://www.tiktok.com/@/video/7454605572915088658?_r=1&_d=secCgYIASAHKAESPgo8azg1Kuow0SNaLXJwwFG%2F4y3ZC%2Fcawo18aaVQ9CNLouBU8MyLKRE23etR%2F8AorNbYCb5npB6Vsm0U6KGUGgA%3D&u_code=e6mh8f8l5aj2dg&share_item_id=7454605572915088658&timestamp=1740979603&utm_campaign=client_share&utm_source=short_fallback&share_app_id=1233', // Added TikTok link
     },
     {
       id: 4,
@@ -77,6 +58,51 @@ const Projects = () => {
       image: 'https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=600',
       views: '156K',
       engagement: '11.4%',
+      url: 'https://vt.tiktok.com/ZSMu2VGv9/', // Added TikTok link
+    },
+    {
+      id: 7,
+      title: isArabic ? 'حملة الجمال A' : 'Beauty Campaign A',
+      category: 'Beauty',
+      platform: 'TikTok',
+      type: 'Reel',
+      image: 'https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg?auto=compress&cs=tinysrgb&w=600',
+      views: '200K',
+      engagement: '10.5%',
+      url: 'https://vt.tiktok.com/ZSMu2Bjsw/',
+    },
+    {
+      id: 8,
+      title: isArabic ? 'وصفة طعام B' : 'Food Recipe B',
+      category: 'Food',
+      platform: 'TikTok',
+      type: 'Reel',
+      image: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=600',
+      views: '150K',
+      engagement: '13.2%',
+      url: 'https://vt.tiktok.com/ZSMu2GYmo/',
+    },
+    {
+      id: 9,
+      title: isArabic ? 'عرض أزياء C' : 'Fashion Show C',
+      category: 'Fashion',
+      platform: 'TikTok',
+      type: 'Reel',
+      image: 'https://images.pexels.com/photos/1926769/pexels-photo-1926769.jpeg?auto=compress&cs=tinysrgb&w=600',
+      views: '180K',
+      engagement: '9.5%',
+      url: 'https://vt.tiktok.com/ZSMu2yShk/',
+    },
+    {
+      id: 10,
+      title: isArabic ? 'فيديو موسيقي D' : 'Music Video D',
+      category: 'Music',
+      platform: 'TikTok',
+      type: 'Reel',
+      image: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=600',
+      views: '300K',
+      engagement: '14.8%',
+      url: 'https://vt.tiktok.com/ZSMu2PRtu/',
     },
   ];
 
@@ -139,22 +165,20 @@ const Projects = () => {
       </section>
 
       {/* Projects Grid */}
-      <section className="py-16">
+    <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div ref={projectsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map((project) => (
               <div key={project.id} className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                <div className="relative overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <button className="bg-white/20 backdrop-blur-sm rounded-full p-4 hover:bg-white/30 transition-colors duration-200">
-                      <Play className="text-white" size={24} />
-                    </button>
-                  </div>
+                <div className="relative overflow-hidden aspect-[9/16]">
+                  <iframe
+                    src={project.url}
+                    title={project.title}
+                    className="w-full h-full"
+                    allowFullScreen
+                    frameBorder="0"
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
+                  ></iframe>
                   <div className="absolute top-4 left-4">
                     <span className={`px-3 py-1 rounded-full text-xs font-medium ${
                       project.platform === 'Instagram' ? 'bg-pink-500 text-white' :
@@ -186,22 +210,19 @@ const Projects = () => {
                       {project.engagement} {isArabic ? 'تفاعل' : 'engagement'}
                     </span>
                   </div>
-                  <button className="w-full flex items-center justify-center px-4 py-2 bg-gray-100 hover:bg-primary-500 hover:text-white rounded-lg transition-all duration-200 group">
+                  <a
+                    href={project.url || '#'}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full flex items-center justify-center px-4 py-2 bg-gray-100 hover:bg-primary-500 hover:text-white rounded-lg transition-all duration-200 group"
+                  >
                     {isArabic ? 'عرض التفاصيل' : 'View Details'}
                     <ExternalLink size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-200" />
-                  </button>
+                  </a>
                 </div>
               </div>
             ))}
           </div>
-
-          {/* Load More Button */}
-          {/* <div className="text-center mt-12">
-            <button className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-500 to-emerald-600 text-white font-semibold rounded-full hover:from-primary-600 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
-              {t.projects.cta}
-              <ExternalLink className={`ml-2 ${isArabic ? 'rotate-180 mr-2 ml-0' : ''}`} size={20} />
-            </button>
-          </div> */}
         </div>
       </section>
     </div>
