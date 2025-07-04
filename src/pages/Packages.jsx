@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import {Link} from "react-router-dom";
 import { Check, Star, ArrowRight, Zap, Crown, Rocket, Infinity } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext.jsx';
 import { motion } from 'framer-motion';
@@ -211,12 +212,14 @@ const Packages = () => {
                     <span className="text-gray-600 ml-2">/ {t.packages.plans[selectedPlan].period}</span>
                   </div>
                   <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
+                    <Link to='/packages'>
                     <button
                         className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-500 to-emerald-600 text-white font-semibold rounded-full hover:from-primary-600 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
                     >
                       {isArabic ? 'ابدأ الآن' : 'Get Started Now'}
                       <ArrowRight className={`ml-2 ${isArabic ? 'rotate-180 mr-2 ml-0' : ''}`} size={20} />
                     </button>
+                    </Link>
                     <button
                         className="inline-flex items-center px-8 py-4 text-primary-600 border-2 border-primary-500 rounded-full hover:bg-primary-50 transition-all duration-300"
                         onClick={() => setShowDetails(false)}
@@ -349,50 +352,8 @@ const Packages = () => {
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-r from-primary-600 to-emerald-600">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-                className="text-3xl md:text-4xl font-bold text-white mb-6"
-            >
-              {isArabic ? 'جاهز لاختيار باقتك؟' : 'Ready to Choose Your Package?'}
-            </motion.h2>
-            <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                viewport={{ once: true }}
-                className="text-xl text-primary-100 mb-8"
-            >
-              {isArabic
-                  ? 'ابدأ رحلتك معنا اليوم واحصل على محتوى استثنائي'
-                  : 'Start your journey with us today and get exceptional content'}
-            </motion.p>
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                viewport={{ once: true }}
-                className="flex flex-col sm:flex-row gap-4 justify-center"
-            >
-              <button
-                  className="inline-flex items-center px-8 py-4 bg-white text-primary-600 font-semibold rounded-full hover:bg-primary-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
-              >
-                {isArabic ? 'تواصل معنا' : 'Contact Us'}
-                <ArrowRight className={`ml-2 ${isArabic ? 'rotate-180 mr-2 ml-0' : ''}`} size={20} />
-              </button>
-              <button
-                  className="inline-flex items-center px-8 py-4 text-white border-2 border-white/30 rounded-full hover:bg-white/10 transition-all duration-300"
-              >
-                {isArabic ? 'احجز استشارة مجانية' : 'Book Free Consultation'}
-              </button>
-            </motion.div>
-          </div>
-        </section>
+
+
       </div>
   );
 };

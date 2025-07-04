@@ -5,6 +5,7 @@ import { useAnimation } from '../contexts/AnimationContext.jsx';
 import { content } from '../data/content.js';
 import { motion } from "framer-motion";
 import { Typewriter } from 'react-simple-typewriter';
+import {Link} from "react-router-dom";
 
 const pageVariants = {
   initial: { opacity: 0, x: 100 },
@@ -185,9 +186,11 @@ const Services = () => {
                           <p className="text-lg text-center leading-relaxed">
                             {service.detailedInfo || `Discover the power of ${service.title}.`}
                           </p>
+                          <Link to={'/packages'}>
                           <button className="mt-8 px-6 py-2 bg-white text-primary-600 font-semibold rounded-full hover:bg-primary-100 transition-colors duration-200">
                             {isArabic ? 'ابدأ الآن' : 'Start Now'}
                           </button>
+                          </Link>
                         </div>
                       </motion.div>
                     </div>

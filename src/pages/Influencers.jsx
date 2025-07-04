@@ -16,7 +16,7 @@ const Influencers = () => {
   const containerRef = useRef();
 
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedCategory, setSelectedCategory] = useState('all');
   const [filteredInfluencers, setFilteredInfluencers] = useState(influencers);
 
   // Parallax effect for header
@@ -28,7 +28,7 @@ const Influencers = () => {
     let filtered = influencers;
 
     // Filter by category
-    if (selectedCategory !== 'All') {
+    if (selectedCategory !== 'all') {
       filtered = filtered.filter(influencer =>
           isArabic ? influencer.categoryAr === selectedCategory : influencer.category === selectedCategory.toLowerCase()
       );
@@ -120,11 +120,11 @@ const Influencers = () => {
                   {t.influencers.categories.map((category) => (
                       <motion.button
                           key={category}
-                          onClick={() => setSelectedCategory(category === 'الكل' ? 'All' : category)}
+                          onClick={() => setSelectedCategory(category === 'الكل' ? 'all' : category)}
                           whileHover={{scale: 1.05, boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)'}}
                           whileTap={{scale: 0.95}}
                           className={`px-4 py-2 sm:px-6 sm:py-3 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 ${
-                              selectedCategory === (category === 'الكل' ? 'All' : category)
+                              selectedCategory === (category === 'الكل' ? 'all' : category)
                                   ? 'bg-primary-500 text-white shadow-md'
                                   : 'bg-gray-200 text-primary-700 hover:bg-primary-200'
                           }`}

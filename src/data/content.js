@@ -71,7 +71,7 @@ export const content = {
       title: 'Influencers',
       subtitle: 'We work with a strong and diverse network of influencers across the Middle East. We focus on real influence — not just follower count.',
       search: 'Search influencers...',
-      categories: ['All', 'beauty', 'comedy', 'culture', 'music', 'marketing', 'finance', 'luxury', 'entertainment', 'design', 'lifestyle', 'fashion', 'food', 'tech', 'travel']    },
+      categories: ['all', 'beauty', 'comedy', 'culture', 'music', 'marketing', 'finance', 'luxury', 'entertainment', 'design', 'lifestyle', 'fashion', 'food', 'tech', 'travel']    },
     services: {
       title: 'Services',
       subtitle: 'We offer full creative and production services — from concept to execution — tailored to grow your brand and maximize visibility.',

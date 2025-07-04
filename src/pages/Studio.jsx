@@ -83,21 +83,21 @@ const Studio = () => {
       title: 'Sony Lens',
       subtitle: 'High-performance lens for cinematic shots.',
       button: 'Book a Tour',
-      buttonLink: '/contact',
+      buttonLink: '/packages',
     },
     {
       img: imgB6a,
       title: 'Studio Lighting',
       subtitle: 'Professional lighting for every creative need.',
       button: 'Get a Quote',
-      buttonLink: '/contact',
+      buttonLink: '/packages',
     },
     {
       img: imgShureMV,
       title: 'Shure MV Microphone',
       subtitle: 'Broadcast-quality audio for podcasts and more.',
       button: 'Start Recording',
-      buttonLink: '/contact',
+      buttonLink: '/packages',
     },
   ];
 

@@ -17,7 +17,7 @@ const Projects = () => {
   const filterLabelRef = useRef();
   const filterButtonsRef = useRef([]);
   const projectsRef = useRef();
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedCategory, setSelectedCategory] = useState('all');
 
   const categories = ['All', 'Beauty', 'Food', 'Fashion', 'Music', 'Lifestyle', 'Wedding'];
   const platforms = ['Instagram', 'TikTok', 'YouTube', 'Reel'];
@@ -27,6 +27,7 @@ const Projects = () => {
       id: 1,
       title: isArabic ? 'حملة هواوي فري كليب ' : 'Huawei FreeClip Campaign ',
       category: 'Fashion',
+      categoryAr: 'موضة',
       platform: 'Instagram',
       type: 'Reel',
       image: huawei,
@@ -38,6 +39,7 @@ const Projects = () => {
       id: 2,
       title: isArabic ? 'حملة كافيه دافيدوف ' : 'Davidoff Café Campaign ',
       category: 'Lifestyle',
+      categoryAr: 'نمط الحياة',
       platform: 'Instagram',
       type: 'Reel',
       image: coffee,
@@ -49,6 +51,7 @@ const Projects = () => {
       id: 3,
       title: isArabic ? 'حملة ماسكارا سكاي هاي ' : 'Sky High Mascara Campaign ',
       category: 'Beauty',
+      categoryAr: 'جمال',
       platform: 'Instagram',
       type: 'Reel',
       image: masscara,
@@ -60,6 +63,7 @@ const Projects = () => {
       id: 4,
       title: isArabic ? 'بالقرية العالمية' : 'Globale Village',
       category: 'Fashion',
+      categoryAr: 'موضة',
       platform: 'Instagram',
       type: 'Reel',
       image: global,
@@ -71,6 +75,7 @@ const Projects = () => {
       id: 5,
       title: isArabic ? 'محتوى إسلام أفرو X' : 'Islamafro Content X',
       category: 'Lifestyle',
+      categoryAr: 'نمط الحياة',
       platform: 'Instagram',
       type: 'Reel',
       image: islam,
@@ -81,7 +86,8 @@ const Projects = () => {
     {
       id: 6,
       title: isArabic ? 'حملة ميت بوك D16 ' : 'MateBook D16 Campaign ',
-      category: 'Technology',
+      category: 'Tech',
+      categoryAr: 'تقنية',
       platform: 'Instagram',
       type: 'Reel',
       image: matebook,
@@ -91,9 +97,9 @@ const Projects = () => {
     },
   ];
 
-  const filteredProjects = selectedCategory === 'All'
+  const filteredProjects = selectedCategory === 'all'
       ? projects
-      : projects.filter(project => project.category === selectedCategory);
+      :  projects.filter(project => isArabic ?  project.categoryAr === selectedCategory : project.category.toLowerCase() === selectedCategory);
 
   useEffect(() => {
     animateOnScroll(headerRef.current);
@@ -104,9 +110,9 @@ const Projects = () => {
   }, [animateOnScroll]);
 
   return (
-      <div className="min-h-screen  bg-white ">
+      <div className="min-h-screen   bg-white ">
         {/* Header */}
-        <section className="py-40 bg-gradient-to-r from-primary-600 to-emerald-600 relative z-10">
+        <section className="py-40 bg-gradient-to-r from-primary-600 to-emerald-600 relative z-10 ">
           <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ${isArabic ? 'text-right' : 'text-center'}`}>
             <h1 className={`text-4xl md:text-5xl font-bold text-white mb-4 ${isArabic ? 'font-arabic' : ''}`}>
               {isArabic ? 'مشاريعنا' : 'Our Projects'}
@@ -130,18 +136,18 @@ const Projects = () => {
               </span>
               </div>
               <div className={`flex flex-wrap gap-3 ${isArabic ? 'justify-end' : 'justify-start'}`}>
-                {categories.map((category, index) => (
+                {t.influencers.categories.map((category, index) => (
                     <button
                         key={category}
                         ref={(el) => (filterButtonsRef.current[index] = el)}
-                        onClick={() => setSelectedCategory(category)}
+                        onClick={() => setSelectedCategory(category === 'الكل' ? 'all' : category)}
                         className={`px-6 py-3 rounded-full text-base font-semibold transition-all duration-300 ${
-                            selectedCategory === category
+                            selectedCategory === (category === 'الكل' ? 'all' : category)
                                 ? 'bg-primary-500 text-white shadow-lg hover:shadow-xl'
                                 : 'bg-gray-100 text-gray-900 hover:bg-gray-200 hover:shadow-md border border-gray-200'
                         } focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 ${isArabic ? 'font-arabic' : 'font-sans'} font-[Arial, sans-serif]`}
                     >
-                      {isArabic && category === 'All' ? 'الكل' : category}
+                      {isArabic && category === 'all' ? 'الكل' : category}
                     </button>
                 ))}
               </div>

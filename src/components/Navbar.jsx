@@ -63,8 +63,8 @@ const Navbar = () => {
   ];
 
   return (
-      <div ref={navRef} className="fixed top-4 left-0 right-0 z-50 flex justify-center">
-        <nav className="flex items-center gap-x-2 rounded-full bg-white/60 backdrop-blur-xl shadow-lg p-2 border border-white/30 w-11/12 max-w-7xl mx-auto">
+      <div ref={navRef} className="fixed top-4 left-0 right-0 z-50 flex justify-center ">
+        <nav className="flex items-center gap-x-2 rounded-full bg-white/60 backdrop-blur-xl shadow-lg p-2 border border-white/30 w-full max-w-3xl mx-auto">
           <Link to="/" className="flex items-center space-x-2 px-3">
             <img src={logoImg} alt="YS Logo"
                  className="w-8 h-8 object-contain rounded-full drop-shadow-[0_0_12px_rgba(16,185,129,0.7)]"/>

@@ -92,9 +92,9 @@ const Hero3DSection = () => {
     {
       zIndex: 5,
       content: (
-          <div className="hero-card-content space-y-8 text-center px-4">
+          <div className="hero-card-content space-y-8 text-center px-4 pb-20">
             {/* Use the imported image variable directly */}
-            <img src={logoImg} alt="YS Logo" className="mx-auto mb-4 w-24 h-24 object-contain" />
+            <img src={logoImg} alt="YS Logo" className="mx-auto mb-4 w-44 h-44 object-contain" />
             <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight drop-shadow-lg">{t.title}</h1>
             <p className="text-xl text-primary-100 max-w-2xl mx-auto leading-relaxed">{t.subtitle}</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -102,10 +102,12 @@ const Hero3DSection = () => {
                 {t.cta}
                 <ArrowRight className={clsx("ml-2 group-hover:translate-x-1 transition-transform duration-300", isArabic && "rotate-180 mr-2 ml-0")} size={20}/>
               </Link>
+              <Link to="/projects">
               <button className="group inline-flex items-center px-6 py-4 text-white border-2 border-white/30 rounded-full hover:bg-white/10 transition-all duration-300">
                 <Play size={20} className="mr-2"/>
                 {isArabic ? "شاهد الفيديو" : "Watch Video"}
               </button>
+              </Link>
             </div>
           </div>
       )
@@ -271,8 +273,8 @@ const pageTransition = {
 
 // FINAL HOME PAGE
 const Home = () => (
-    <div className="flex flex-col min-h-screen bg-white">
-      <main className="flex-1">
+    <div className="flex flex-col min-h-screen  bg-white">
+      <main className="flex-1 ">
         <motion.div
             variants={pageVariants}
             initial="initial"
