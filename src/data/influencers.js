@@ -75,7 +75,7 @@ export const influencers = [
     "location": "Jordan",
     "locationAr": "الأردن",
     "socials": {
-      "instagram": "",
+      "instagram": "https://www.instagram.com/ghaith_marwan",
       "tiktok": ""
     },
     "tags": ["lifestyle", "travel", "food", "relationships"],
@@ -98,7 +98,8 @@ export const influencers = [
     "location": "",
     "locationAr": "",
     "socials": {
-      "tiktok": ""
+      "tiktok": "",
+      "instagram": "https://www.instagram.com/saraaalwari?igsh=MWFvNzBtb3pibjZ2cw==\n"
     },
     "tags": ["lifestyle", "relationships", "culture"],
     "tagsAr": ["نمط الحياة", "علاقات", "ثقافة"],
@@ -122,7 +123,7 @@ export const influencers = [
     "socials": {
       "youtube": "",
       "tiktok": "",
-      "instagram": "",
+      "instagram": "https://www.instagram.com/abbas_shibani?igsh=MWZvMm90Y28xMWUwZQ==\n",
       "facebook": "",
       "twitter": ""
     },
@@ -146,7 +147,8 @@ export const influencers = [
     "location": "Dubai, UAE",
     "locationAr": "دبي، الإمارات العربية المتحدة",
     "socials": {
-      "youtube": ""
+      "youtube": "",
+      "instagram": "https://www.instagram.com/anas_alshayb?igsh=ZTZsenQ2OWdvZmtq\n"
     },
     "tags": ["culture", "travel", "middle east"],
     "tagsAr": ["ثقافة", "سفر", "الشرق الأوسط"],
@@ -170,7 +172,7 @@ export const influencers = [
     "socials": {
       "youtube": "",
       "tiktok": "",
-      "instagram": "",
+      "instagram": "https://www.instagram.com/bessan.lsmail?igsh=aTRwbHh1djY0ZnNw\n",
       "facebook": ""
     },
     "tags": ["lifestyle", "music", "challenges"],
@@ -193,7 +195,8 @@ export const influencers = [
     "location": "",
     "locationAr": "",
     "socials": {
-      "youtube": ""
+      "youtube": "",
+      "instagram" : "https://www.instagram.com/5nourrmar?igsh=MWlqdDhtNXl2cW1yZw==\n"
     },
     "tags": ["music", "artist"],
     "tagsAr": ["موسيقى", "فنان"],
@@ -215,7 +218,8 @@ export const influencers = [
     "location": "",
     "locationAr": "",
     "socials": {
-      "tiktok": ""
+      "tiktok": "",
+      "instagram" : "https://www.instagram.com/barhom?igsh=MXI5d2Z6dGtjbXYwcA==\n"
     },
     "tags": ["comedy", "skits"],
     "tagsAr": ["كوميديا", "اسكتشات"],
@@ -236,7 +240,9 @@ export const influencers = [
     "engagement": "",
     "location": "",
     "locationAr": "",
-    "socials": {},
+    "socials": {
+      "instagram" : "https://www.instagram.com/mahmoudmahe.r?igsh=b2duZjJ3NW5yNGI0\n"
+    },
     "tags": ["marketing", "SEO", "copywriting"],
     "tagsAr": ["تسويق", "تحسين محركات البحث", "كتابة إعلانات"],
     "featured": false
@@ -257,7 +263,8 @@ export const influencers = [
     "location": "",
     "locationAr": "",
     "socials": {
-      "tiktok": ""
+      "tiktok": "",
+      "instagram" : "https://www.instagram.com/islamafro?igsh=OXgwb284cTQ2aHI=\n"
     },
     "tags": ["comedy", "pranks", "culture"],
     "tagsAr": ["كوميديا", "مقالب", "ثقافة"],
@@ -279,7 +286,8 @@ export const influencers = [
     "location": "",
     "locationAr": "",
     "socials": {
-      "tiktok": ""
+      "tiktok": "",
+      "instagram": "https://www.instagram.com/qamaraltaiy?igsh=MTNodTdib2s4YjZiZA==\n",
     },
     "tags": ["beauty", "fashion", "lifestyle"],
     "tagsAr": ["جمال", "موضة", "نمط الحياة"],
@@ -301,7 +309,8 @@ export const influencers = [
     "location": "Dubai, UAE",
     "locationAr": "دبي، الإمارات العربية المتحدة",
     "socials": {
-      "tiktok": ""
+      "tiktok": "",
+      "instagram" : "https://www.instagram.com/alaa.ayyman?igsh=MTZnZGxxbXFkc3lpaw==\n"
     },
     "tags": ["finance", "crypto", "trading"],
     "tagsAr": ["مالية", "عملات رقمية", "تداول"],
@@ -322,7 +331,9 @@ export const influencers = [
     "engagement": "",
     "location": "",
     "locationAr": "",
-    "socials": {},
+    "socials": {
+      "instagram" : "https://www.instagram.com/ahmadkiswaniii?igsh=MWIzZGs2YnZqNWw0eQ==\n"
+    },
     "tags": [],
     "tagsAr": [],
     "featured": false
@@ -344,7 +355,7 @@ export const influencers = [
     "locationAr": "الإمارات العربية المتحدة",
     "socials": {
       "tiktok": "",
-      "instagram": "",
+      "instagram": "https://www.instagram.com/amira_alhusen?igsh=Z2JqMmg5MXl3aHBt\n",
       "youtube": ""
     },
     "tags": ["lifestyle", "comedy", "beauty"],
@@ -369,7 +380,7 @@ export const influencers = [
     "socials": {
       "tiktok": "",
       "youtube": "",
-      "instagram": "",
+      "instagram": "https://www.instagram.com/ghadighali?igsh=MXRhanZkM3JsbGN2bw==\n",
       "snapchat": ""
     },
     "tags": ["comedy", "flirting"],
@@ -392,7 +403,7 @@ export const influencers = [
     "location": "Dubai, UAE",
     "locationAr": "دبي، الإمارات العربية المتحدة",
     "socials": {
-      "instagram": "",
+      "instagram": "https://www.instagram.com/akhras?igsh=MW9jeDZtaDdkMGI0Zw==\n",
       "youtube": ""
     },
     "tags": ["luxury", "watches", "adventure"],
@@ -415,7 +426,8 @@ export const influencers = [
     "location": "",
     "locationAr": "",
     "socials": {
-      "youtube": ""
+      "youtube": "",
+      "instagram" : "https://www.instagram.com/movlogs?igsh=MWVkN2V4dDBuOWZoZw==\n"
     },
     "tags": ["luxury", "lifestyle"],
     "tagsAr": ["فخامة", "نمط الحياة"],
@@ -437,7 +449,8 @@ export const influencers = [
     "location": "Dubai, UAE",
     "locationAr": "دبي، الإمارات العربية المتحدة",
     "socials": {
-      "tiktok": ""
+      "tiktok": "",
+      "instagram" : "https://www.instagram.com/itskhateb?igsh=MXY0NjVwa3VsemFydg==\n"
     },
     "tags": ["lifestyle", "comedy", "regional"],
     "tagsAr": ["نمط الحياة", "كوميديا", "إقليمي"],
@@ -459,7 +472,8 @@ export const influencers = [
     "location": "Syria, UAE",
     "locationAr": "سوريا، الإمارات العربية المتحدة",
     "socials": {
-      "tiktok": ""
+      "tiktok": "",
+      "insragram" : "https://www.instagram.com/leen_mohd98?igsh=MXhxbG1oMmdkbDF5Zw==\n"
     },
     "tags": ["beauty", "lifestyle", "collaborations"],
     "tagsAr": ["جمال", "نمط الحياة", "تعاونات"],
@@ -481,7 +495,8 @@ export const influencers = [
     "location": "",
     "locationAr": "",
     "socials": {
-      "youtube": ""
+      "youtube": "",
+      "instagram": "https://www.instagram.com/lana_mohd89?igsh=YXp5MzRqNHZkNDF2\n",
     },
     "tags": ["lifestyle", "podcasts", "collaborations"],
     "tagsAr": ["نمط الحياة", "بودكاست", "تعاونات"],
@@ -503,7 +518,7 @@ export const influencers = [
     "location": "Bahrain, Dubai, Los Angeles",
     "locationAr": "البحرين، دبي، لوس أنجلوس",
     "socials": {
-      "instagram": ""
+      "instagram": "https://www.instagram.com/nasheet?igsh=NnpzMTZja3JhejR2"
     },
     "tags": ["entertainment", "sports", "travel"],
     "tagsAr": ["ترفيه", "رياضة", "سفر"],
@@ -525,7 +540,8 @@ export const influencers = [
     "location": "Tunisia",
     "locationAr": "تونس",
     "socials": {
-      "tiktok": ""
+      "tiktok": "",
+      "instagram" : "https://www.instagram.com/_douhalaribi__?igsh=MWlwejVjdzZ4eXFuZw==\n"
     },
     "tags": ["lifestyle", "culture"],
     "tagsAr": ["نمط الحياة", "ثقافة"],
@@ -547,7 +563,8 @@ export const influencers = [
     "location": "Tunisia",
     "locationAr": "تونس",
     "socials": {
-      "tiktok": ""
+      "tiktok": "",
+      "instagram" : "https://www.instagram.com/rahmalaribiii?igsh=NjhhYXpnYmVrNjI="
     },
     "tags": ["lifestyle", "comedy", "culture"],
     "tagsAr": ["نمط الحياة", "كوميديا", "ثقافة"],
@@ -570,7 +587,8 @@ export const influencers = [
     "locationAr": "",
     "socials": {
       "tiktok": "",
-      "youtube": ""
+      "youtube": "",
+      "instagram" : "https://www.instagram.com/tareqhaski1?igsh=eHNmdDA0NjhhN2Vr\n"
     },
     "tags": ["comedy", "politics"],
     "tagsAr": ["كوميديا", "سياسة"],
@@ -592,7 +610,8 @@ export const influencers = [
     "location": "",
     "locationAr": "",
     "socials": {
-      "tiktok": ""
+      "tiktok": "",
+      "instagram" : "https://www.instagram.com/p6_6z?igsh=bXl4cXExemhkbzY=\n"
     },
     "tags": ["lifestyle", "communication"],
     "tagsAr": ["نمط الحياة", "تواصل"],
@@ -614,7 +633,8 @@ export const influencers = [
     "location": "Morocco",
     "locationAr": "المغرب",
     "socials": {
-      "tiktok": ""
+      "tiktok": "",
+      "instagram" :"https://www.instagram.com/missdouaa.officiel?igsh=YXVmNHB5aW1yZ3Bn\n"
     },
     "tags": ["design", "trends"],
     "tagsAr": ["تصميم", "موضة"],
@@ -636,7 +656,7 @@ export const influencers = [
     "location": "UAE",
     "locationAr": "الإمارات العربية المتحدة",
     "socials": {
-      "instagram": "",
+      "instagram": "https://www.instagram.com/kindy_man?igsh=cnN4cGk1YmgxeDFt\n",
       "youtube": ""
     },
     "tags": ["entertainment", "comedy", "travel"],
@@ -659,7 +679,8 @@ export const influencers = [
     "location": "",
     "locationAr": "",
     "socials": {
-      "tiktok": ""
+      "tiktok": "",
+      "instagram" : "https://www.instagram.com/moassaadd?igsh=azl3d2cxb2xkZ3N1\n"
     },
     "tags": ["lifestyle", "personal"],
     "tagsAr": ["نمط الحياة", "شخصي"],
@@ -681,7 +702,8 @@ export const influencers = [
     "location": "Dubai, UAE",
     "locationAr": "دبي، الإمارات العربية المتحدة",
     "socials": {
-      "tiktok": ""
+      "tiktok": "",
+      "instagram" : "https://www.instagram.com/m.eddie6?igsh=MWxnMWppNzVwYXp1dA==\n"
     },
     "tags": ["lifestyle", "comedy", "sports"],
     "tagsAr": ["نمط الحياة", "كوميديا", "رياضة"],
@@ -703,7 +725,7 @@ export const influencers = [
     "location": "Dubai, UAE; Los Angeles, USA",
     "locationAr": "دبي، الإمارات العربية المتحدة؛ لوس أنجلوس، الولايات المتحدة",
     "socials": {
-      "instagram": "",
+      "instagram": "https://www.instagram.com/ossymarwah?igsh=Z200dmticGI1dHNz\n",
       "tiktok": ""
     },
     "tags": ["lifestyle", "travel", "entertainment"],

@@ -1,9 +1,11 @@
 import React, { useEffect, useRef } from 'react';
-import { Mail, Phone, Globe, Twitter, Instagram, Facebook } from 'lucide-react';
+import {Mail, Phone, Globe, Twitter, Instagram, Facebook, Languages} from 'lucide-react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useLanguage } from '../contexts/LanguageContext.jsx';
 import { content } from '../data/content.js';
+import {Link} from "react-router-dom";
+import logoImg from "../assets/images/withou texte2.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -35,7 +37,7 @@ const Footer = () => {
       const revealTl = gsap.timeline({
         scrollTrigger: {
           trigger: footerRef.current,
-          start: 'top bottom+=10',
+          start: 'top bottom+=300',
           end: 'bottom bottom',
           scrub: 1,
         },
@@ -68,7 +70,7 @@ const Footer = () => {
   }, []);
 
   return (
-    <div className="relative z-10">
+    <div className="relative z-50 ">
       <footer
         ref={footerRef}
         className="relative bg-slate-900 text-white pt-24 pb-12 overflow-hidden"
@@ -84,13 +86,12 @@ const Footer = () => {
         <div className="footer-content relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             
           <div className="space-y-5"> {/* Column 1 */}
-            <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-gradient-to-r from-primary-500 to-emerald-600 rounded-lg flex items-center justify-center">
-                    <span className="text-white font-bold text-lg">CP</span>
-                </div>
-                <span className="font-bold text-xl">Content Pro</span>
-            </div>
-            <p className="text-gray-400 text-sm leading-relaxed pr-4">{t.footer.description || '...'}</p>
+              <Link to="/" className="flex items-center space-x-2 px-3">
+                  <img src={logoImg} alt="YS Logo"
+                       className="w-10 h-10 object-contain rounded-full drop-shadow-[0_0_12px_rgba(16,185,129,0.7)]"/>
+                  <span className="font-bold text-lg text-gray-50">YANAS</span>
+              </Link>
+            <p className="text-gray-400 text-sm leading-relaxed pr-4">{"We Create High-Impact Content That Converts." || '...'}</p>
             <div className="flex space-x-4 pt-2">
                 <a href="#" className="shimmer-link relative overflow-hidden p-1 rounded-full"><Twitter className="text-gray-400 hover:text-white transition-colors" /><span className="shimmer-effect"></span></a>
                 <a href="#" className="shimmer-link relative overflow-hidden p-1 rounded-full"><Instagram className="text-gray-400 hover:text-white transition-colors" /><span className="shimmer-effect"></span></a>
@@ -130,7 +131,7 @@ const Footer = () => {
               className="shimmer-link group relative w-full flex items-center space-x-3 px-4 py-3 bg-gray-800 hover:bg-primary-600 rounded-lg transition-all duration-300 transform hover:-translate-y-1 overflow-hidden"
             >
               <span className="shimmer-effect"></span>
-              <Globe size={20} className="transition-transform duration-300 group-hover:rotate-[30deg]" />
+                <Languages size={16}  className="transition-transform duration-300 group-hover:rotate-[30deg]" />
               <span className="font-medium relative z-10">{isArabic ? 'Switch to English' : 'التبديل إلى العربية'}</span>
             </button>
           </div>
