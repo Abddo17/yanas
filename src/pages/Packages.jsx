@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import {Link} from "react-router-dom";
-import { Check, Star, ArrowRight, Zap, Crown, Rocket, Infinity } from 'lucide-react';
+import { Check, Star, ArrowRight, Zap, Crown, Rocket, Infinity, Mail, Phone, MessageCircle } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext.jsx';
 import { motion } from 'framer-motion';
 import { content } from '../data/content.js';
@@ -12,6 +12,14 @@ const Packages = () => {
   const customRef = useRef();
   const [selectedPlan, setSelectedPlan] = useState(1); // Growth package is popular
   const [showDetails, setShowDetails] = useState(false);
+  const [showContactForm, setShowContactForm] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+    selectedPackage: ''
+  });
 
   const packageIcons = {
     0: Zap,
@@ -45,10 +53,42 @@ const Packages = () => {
   const handleCardClick = (index) => {
     setSelectedPlan(index);
     setShowDetails(true);
+    setShowContactForm(false);
+  };
+
+  const handleChoosePlan = (index) => {
+    setSelectedPlan(index);
+    setFormData(prev => ({
+      ...prev,
+      selectedPackage: t.packages.plans[index].name
+    }));
+    setShowContactForm(true);
+    setShowDetails(false);
+  };
+
+  const handleWhatsAppRedirect = () => {
+    const message = `Hello! I'm interested in the ${t.packages.plans[selectedPlan].name} package. Can you provide more details?`;
+    const whatsappUrl = `https://wa.me/971507726305?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    // Here you can add form submission logic
+    console.log('Form submitted:', formData);
+    // For now, redirect to WhatsApp
+    handleWhatsAppRedirect();
+  };
+
+  const handleInputChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
   };
 
   return (
-      <div className="min-h-screen pt-20 bg-gray-50">
+      <div className="min-h-screen pt-20 pb-52 bg-gray-50">
         {/* Title */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-12">
           <motion.h1
@@ -135,6 +175,10 @@ const Packages = () => {
                                     ? 'bg-gradient-to-r from-primary-500 to-emerald-600 text-white hover:from-primary-600 hover:to-emerald-700 transform hover:scale-105'
                                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                             }`}
+                            onClick={(e) => {
+                              e.stopPropagation(); // Prevent card click
+                              handleChoosePlan(index);
+                            }}
                         >
                           {isArabic ? 'اختر هذه الباقة' : 'Choose This Plan'}
                         </button>
@@ -212,14 +256,13 @@ const Packages = () => {
                     <span className="text-gray-600 ml-2">/ {t.packages.plans[selectedPlan].period}</span>
                   </div>
                   <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
-                    <Link to='/packages'>
                     <button
                         className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-500 to-emerald-600 text-white font-semibold rounded-full hover:from-primary-600 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                        onClick={() => handleChoosePlan(selectedPlan)}
                     >
-                      {isArabic ? 'ابدأ الآن' : 'Get Started Now'}
+                      {isArabic ? 'اختر هذه الباقة' : 'Choose This Plan'}
                       <ArrowRight className={`ml-2 ${isArabic ? 'rotate-180 mr-2 ml-0' : ''}`} size={20} />
                     </button>
-                    </Link>
                     <button
                         className="inline-flex items-center px-8 py-4 text-primary-600 border-2 border-primary-500 rounded-full hover:bg-primary-50 transition-all duration-300"
                         onClick={() => setShowDetails(false)}
@@ -227,6 +270,119 @@ const Packages = () => {
                       {isArabic ? 'إخفاء التفاصيل' : 'Hide Details'}
                     </button>
                   </div>
+                </motion.div>
+              </div>
+            </section>
+        )}
+
+        {/* Contact Form Section */}
+        {showContactForm && (
+            <section className="py-16 bg-white">
+              <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className="bg-gradient-to-r from-primary-50 to-emerald-50 rounded-2xl p-8"
+                >
+                  <div className="text-center mb-8">
+                    <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                      {isArabic ? 'احصل على الباقة المختارة' : 'Get Your Selected Package'}
+                    </h2>
+                    <p className="text-lg text-gray-600">
+                      {isArabic ? 'أكمل النموذج أدناه وسنتواصل معك قريباً' : 'Complete the form below and we\'ll get back to you soon'}
+                    </p>
+                    <div className="mt-4 p-4 bg-white rounded-lg inline-block">
+                      <span className="text-2xl font-bold text-primary-600">
+                        {t.packages.plans[selectedPlan].name} - {t.packages.plans[selectedPlan].price}
+                      </span>
+                    </div>
+                  </div>
+
+                  <form onSubmit={handleFormSubmit} className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          {isArabic ? 'الاسم الكامل' : 'Full Name'} *
+                        </label>
+                        <input
+                            type="text"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleInputChange}
+                            required
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                            placeholder={isArabic ? 'أدخل اسمك الكامل' : 'Enter your full name'}
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          {isArabic ? 'رقم الهاتف' : 'Phone Number'} *
+                        </label>
+                        <input
+                            type="tel"
+                            name="phone"
+                            value={formData.phone}
+                            onChange={handleInputChange}
+                            required
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                            placeholder={isArabic ? 'أدخل رقم هاتفك' : 'Enter your phone number'}
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        {isArabic ? 'البريد الإلكتروني' : 'Email Address'} *
+                      </label>
+                      <input
+                          type="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          required
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                          placeholder={isArabic ? 'أدخل بريدك الإلكتروني' : 'Enter your email address'}
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        {isArabic ? 'رسالة إضافية' : 'Additional Message'}
+                      </label>
+                      <textarea
+                          name="message"
+                          value={formData.message}
+                          onChange={handleInputChange}
+                          rows="4"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                          placeholder={isArabic ? 'أخبرنا المزيد عن مشروعك (اختياري)' : 'Tell us more about your project (optional)'}
+                      />
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                      <button
+                          type="submit"
+                          className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-500 to-emerald-600 text-white font-semibold rounded-full hover:from-primary-600 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                      >
+                        <MessageCircle className="mr-2" size={20} />
+                        {isArabic ? 'إرسال الطلب' : 'Submit Request'}
+                      </button>
+                      <button
+                          type="button"
+                          onClick={handleWhatsAppRedirect}
+                          className="inline-flex items-center px-8 py-4 bg-green-600 text-white font-semibold rounded-full hover:bg-green-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                      >
+                        <MessageCircle className="mr-2" size={20} />
+                        {isArabic ? 'تواصل عبر واتساب' : 'Contact via WhatsApp'}
+                      </button>
+                      <button
+                          type="button"
+                          onClick={() => setShowContactForm(false)}
+                          className="inline-flex items-center px-8 py-4 text-primary-600 border-2 border-primary-500 rounded-full hover:bg-primary-50 transition-all duration-300"
+                      >
+                        {isArabic ? 'إلغاء' : 'Cancel'}
+                      </button>
+                    </div>
+                  </form>
                 </motion.div>
               </div>
             </section>
@@ -254,6 +410,11 @@ const Packages = () => {
               </p>
               <button
                   className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-500 to-emerald-600 text-white font-semibold rounded-full hover:from-primary-600 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                  onClick={() => {
+                    const message = "Hello! I'm interested in a custom package. Can you provide more details?";
+                    const whatsappUrl = `https://wa.me/971507726305?text=${encodeURIComponent(message)}`;
+                    window.open(whatsappUrl, '_blank');
+                  }}
               >
                 {isArabic ? 'احصل على عرض مخصص' : 'Get Custom Quote'}
                 <ArrowRight className={`ml-2 ${isArabic ? 'rotate-180 mr-2 ml-0' : ''}`} size={20} />

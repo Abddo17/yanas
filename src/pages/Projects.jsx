@@ -110,7 +110,7 @@ const Projects = () => {
   }, [animateOnScroll]);
 
   return (
-      <div className="min-h-screen   bg-white ">
+      <div className="min-h-screen  pb-40  bg-white ">
         {/* Header */}
         <section className="py-40 bg-gradient-to-r from-primary-600 to-emerald-600 relative z-10 ">
           <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ${isArabic ? 'text-right' : 'text-center'}`}>
