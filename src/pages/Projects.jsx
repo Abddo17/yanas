@@ -3,6 +3,18 @@ import { Play, ExternalLink, Filter } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext.jsx';
 import { useAnimation } from '../contexts/AnimationContext.jsx';
 import { content } from '../data/content.js';
+import huawei from '../assets/images/huawei.png';
+import coffee from '../assets/images/coffee.png';
+import masscara from '../assets/images/masscara.png';
+import global from '../assets/images/global.png';
+import islam from '../assets/images/islam.png';
+import matebook from '../assets/images/matebook.png';
+import Prime from '../assets/images/primevideo.png';
+import night from '../assets/images/night.png';
+import style from '../assets/images/style.png';
+import beauty from '../assets/images/beauty.png';
+import barber from '../assets/images/barber.png';
+import life from '../assets/images/life.png';
 
 const Projects = () => {
   const { language, isArabic } = useLanguage();
@@ -10,7 +22,7 @@ const Projects = () => {
   const t = content[language];
   const headerRef = useRef();
   const filterLabelRef = useRef();
-   const filterButtonsRef = useRef([]);
+  const filterButtonsRef = useRef([]);
   const projectsRef = useRef();
   const [selectedCategory, setSelectedCategory] = useState('All');
 
@@ -18,96 +30,142 @@ const Projects = () => {
   const platforms = ['Instagram', 'TikTok', 'YouTube', 'Reel'];
 
   const projects = [
-   {
-      id: 3,
-      title: isArabic ? 'حملة مطعم Z' : 'Food Campaign for Restaurant Z',
-      category: 'Food',
-      platform: 'TikTok',
-      type: 'Reel',
-      image: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=600',
-      views: '89K',
-      engagement: '15.2%',
-      url: 'https://www.tiktok.com/@/video/7454605572915088658?_r=1&_d=secCgYIASAHKAESPgo8azg1Kuow0SNaLXJwwFG%2F4y3ZC%2Fcawo18aaVQ9CNLouBU8MyLKRE23etR%2F8AorNbYCb5npB6Vsm0U6KGUGgA%3D&u_code=e6mh8f8l5aj2dg&share_item_id=7454605572915088658&timestamp=1740979603&utm_campaign=client_share&utm_source=short_fallback&share_app_id=1233', // Added TikTok link
-    },
     {
-      id: 4,
-      title: isArabic ? 'مجموعة الموضة الصيفية' : 'Summer Fashion Collection',
+      id: 1,
+      title: isArabic ? 'حملة هواوي فري كليب' : 'Huawei FreeClip Campaign',
       category: 'Fashion',
       platform: 'Instagram',
       type: 'Reel',
-      image: 'https://images.pexels.com/photos/1926769/pexels-photo-1926769.jpeg?auto=compress&cs=tinysrgb&w=600',
-      views: '203K',
-      engagement: '9.8%',
+      image: huawei,
+      views: '450k',
+      engagement: '50k',
+      link: 'https://www.instagram.com/reel/DEAqgFJMNxq/?igsh=cGVmYjdqNHVoaXZz',
+    },
+    {
+      id: 2,
+      title: isArabic ? 'حملة كافيه دافيدوف' : 'Davidoff Café Campaign',
+      category: 'Lifestyle',
+      platform: 'Instagram',
+      type: 'Reel',
+      image: coffee,
+      views: '100k',
+      engagement: '12k',
+      link: 'https://www.instagram.com/reel/DFiN0gpTmW4/',
+    },
+    {
+      id: 3,
+      title: isArabic ? 'حملة ماسكارا سكاي هاي' : 'Sky High Mascara Campaign',
+      category: 'Beauty',
+      platform: 'Instagram',
+      type: 'Reel',
+      image: masscara,
+      views: '90k',
+      engagement: '10k',
+      link: 'https://www.instagram.com/reel/C6Rkg8uPCCt/',
+    },
+    {
+      id: 4,
+      title: isArabic ? 'بالقرية العالمية' : 'Global Village',
+      category: 'Fashion',
+      platform: 'Instagram',
+      type: 'Reel',
+      image: global,
+      views: '300k',
+      engagement: '34k',
+      link: 'https://www.instagram.com/reel/C6oWrenvP7E/?igsh=Y25lYndpNHgxdHln',
     },
     {
       id: 5,
-      title: isArabic ? 'تغطية حفل زفاف فاخر' : 'Luxury Wedding Coverage',
-      category: 'Wedding',
-      platform: 'YouTube',
-      type: 'Video',
-      image: 'https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=600',
-      views: '67K',
-      engagement: '18.7%',
+      title: isArabic ? 'محتوى إسلام أفرو X' : 'Islamafro Content X',
+      category: 'Lifestyle',
+      platform: 'Instagram',
+      type: 'Reel',
+      image: islam,
+      views: '200k',
+      engagement: '20k',
+      link: 'https://www.instagram.com/reel/DFvQ01RTz8a/',
     },
     {
       id: 6,
-      title: isArabic ? 'سلسلة نمط الحياة' : 'Lifestyle Series',
-      category: 'Lifestyle',
-      platform: 'TikTok',
+      title: isArabic ? 'حملة ميت بوك D16' : 'MateBook D16 Campaign',
+      category: 'Technology',
+      platform: 'Instagram',
       type: 'Reel',
-      image: 'https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=600',
-      views: '156K',
-      engagement: '11.4%',
-      url: 'https://vt.tiktok.com/ZSMu2VGv9/', // Added TikTok link
+      image: matebook,
+      views: '125k',
+      engagement: '15k',
+      link: 'https://www.instagram.com/reel/C1pDxUAP9JJ/',
     },
     {
       id: 7,
-      title: isArabic ? 'حملة الجمال A' : 'Beauty Campaign A',
-      category: 'Beauty',
-      platform: 'TikTok',
+      title: isArabic ? ' GEN V مسلسل برايم فيديو' : ' Gen V On Prime Video',
+      category: 'Lifestyle',
+      platform: 'Instagram',
       type: 'Reel',
-      image: 'https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg?auto=compress&cs=tinysrgb&w=600',
-      views: '200K',
-      engagement: '10.5%',
-      url: 'https://vt.tiktok.com/ZSMu2Bjsw/',
+      image: Prime,
+      views: '150k',
+      engagement: '59k',
+      link: 'https://www.instagram.com/reel/C0t6bmfxbmT/?igsh=MTZmNzFkMDVqY3dnMw%3D%3D',
     },
     {
       id: 8,
-      title: isArabic ? 'وصفة طعام B' : 'Food Recipe B',
-      category: 'Food',
-      platform: 'TikTok',
+      title: isArabic ? 'ليلة مليئة بالطاقة.' : 'A night filled with Energy',
+      category: 'Music',
+      platform: 'Instagram',
       type: 'Reel',
-      image: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=600',
-      views: '150K',
-      engagement: '13.2%',
-      url: 'https://vt.tiktok.com/ZSMu2GYmo/',
+      image: night,
+      views: '13k',
+      engagement: '60',
+      link: 'https://www.instagram.com/reel/C51O3A5PmIY/?igsh=MTdweXV0ZWtoNmJvbw%3D%3D',
     },
     {
       id: 9,
-      title: isArabic ? 'عرض أزياء C' : 'Fashion Show C',
-      category: 'Fashion',
-      platform: 'TikTok',
+      title: isArabic ? 'شو اكتر ستايل حبيتوه ': 'What style did you like the most?',
+      category: 'Lifestyle',
+      platform: 'Instagram',
       type: 'Reel',
-      image: 'https://images.pexels.com/photos/1926769/pexels-photo-1926769.jpeg?auto=compress&cs=tinysrgb&w=600',
-      views: '180K',
-      engagement: '9.5%',
-      url: 'https://vt.tiktok.com/ZSMu2yShk/',
+      image: style,
+      views: '220k',
+      engagement: '306k',
+      link: 'https://www.instagram.com/reel/ABC123xyz/',
     },
     {
       id: 10,
-      title: isArabic ? 'فيديو موسيقي D' : 'Music Video D',
-      category: 'Music',
-      platform: 'TikTok',
+      title: isArabic ? 'هناك شخص يراقبني ☺️ ': 'Somebody’s watching me ☺️',
+      category: 'Fashion',
+      platform: 'Instagram',
       type: 'Reel',
-      image: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=600',
-      views: '300K',
-      engagement: '14.8%',
-      url: 'https://vt.tiktok.com/ZSMu2PRtu/',
+      image: beauty,
+      views: '350k',
+      engagement: '137k',
+      link: 'https://www.instagram.com/reel/DKDBIW9B2pN/?igsh=eHF0b2h0a2tiZXM1',
+    },
+    {
+      id: 11,
+      title: isArabic ? ' قصات شعر جديدة ' : 'New Haircut',
+      category: 'Fashion',
+      platform: 'Instagram',
+      type: 'Reel',
+      image: barber,
+      views: '180k',
+      engagement: '155',
+      link: 'https://www.instagram.com/reel/C6gDwoCCeMi/?igsh=eTh6MzNyaXhoZ3pk',
+    },
+    {
+      id: 12,
+      title: isArabic ? 'حياة الأحلام  ' : 'Dream Life',
+      category: 'Lifestyle',
+      platform: 'Instagram',
+      type: 'Reel',
+      image: life,
+      views: '260k',
+      engagement: '305k',
+      link: 'https://www.instagram.com/reel/DLaQjJOSKod/?igsh=b242OTlkb25wN2Fn',
     },
   ];
 
-  const filteredProjects = selectedCategory === 'All' 
-    ? projects 
+  const filteredProjects = selectedCategory === 'All'
+    ? projects
     : projects.filter(project => project.category === selectedCategory);
 
   useEffect(() => {
@@ -119,11 +177,11 @@ const Projects = () => {
   }, [animateOnScroll]);
 
   return (
-    <div className="min-h-screen pt-20 bg-white">
+    <div className="min-h-screen bg-white">
       {/* Header */}
-       <section className="py-20 bg-gradient-to-r from-primary-600 to-emerald-600 relative z-10">
-        <div  className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ${isArabic ? 'text-right' : 'text-center'}`}>
-          <h1 className={`text-4xl md:text-5xl font-bold text-white mb-4 ${isArabic ? 'font-arabic' : 'font-sans'}`}>
+      <section className="py-40 bg-gradient-to-r from-primary-600 to-emerald-600 relative z-10">
+        <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ${isArabic ? 'text-right' : 'text-center'}`}>
+          <h1 className={`text-4xl md:text-5xl font-bold text-white mb-4 ${isArabic ? 'font-arabic' : ''}`}>
             {isArabic ? 'مشاريعنا' : 'Our Projects'}
           </h1>
           <p className={`text-lg md:text-xl text-white/95 max-w-3xl mx-auto ${isArabic ? 'font-arabic' : 'font-sans'} font-[Arial, sans-serif] leading-relaxed drop-shadow-sm`}>
@@ -135,7 +193,7 @@ const Projects = () => {
       </section>
 
       {/* Filter Section */}
-       <section className="py-8 bg-white border-b">
+      <section className="py-8 bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className={`flex items-center justify-between flex-wrap gap-6 ${isArabic ? 'flex-row-reverse' : ''}`}>
             <div ref={filterLabelRef} className={`flex items-center ${isArabic ? 'space-x-reverse space-x-4' : 'space-x-4'}`}>
@@ -165,20 +223,24 @@ const Projects = () => {
       </section>
 
       {/* Projects Grid */}
-    <section className="py-16">
+      <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div ref={projectsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map((project) => (
               <div key={project.id} className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                <div className="relative overflow-hidden aspect-[9/16]">
-                  <iframe
-                    src={project.url}
-                    title={project.title}
-                    className="w-full h-full"
-                    allowFullScreen
-                    frameBorder="0"
-                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
-                  ></iframe>
+                <div className="relative overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <a href={project.link} target="_blank" rel="noopener noreferrer">
+                      <button className="bg-white/20 backdrop-blur-sm rounded-full p-4 hover:bg-white/30 transition-colors duration-200">
+                        <Play className="text-white" size={24} />
+                      </button>
+                    </a>
+                  </div>
                   <div className="absolute top-4 left-4">
                     <span className={`px-3 py-1 rounded-full text-xs font-medium ${
                       project.platform === 'Instagram' ? 'bg-pink-500 text-white' :
@@ -195,7 +257,6 @@ const Projects = () => {
                     </span>
                   </div>
                 </div>
-                
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors duration-200">
                     {project.title}
@@ -211,7 +272,7 @@ const Projects = () => {
                     </span>
                   </div>
                   <a
-                    href={project.url || '#'}
+                    href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full flex items-center justify-center px-4 py-2 bg-gray-100 hover:bg-primary-500 hover:text-white rounded-lg transition-all duration-200 group"
